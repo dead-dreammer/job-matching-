@@ -1,0 +1,501 @@
+preferred_field,expected_salary,preferred_location,job_field,job_salary,job_location,job_title,match_score
+Finance,29426,Durban,Engineering,19375,Pretoria,Electrical Engineer,0
+Engineering,24489,Durban,IT,22881,Durban,IT Support,0
+Healthcare,14124,Johannesburg,Retail,23875,Pretoria,Cashier,0
+Retail,16019,Port Elizabeth,Education,19188,Pretoria,Tutor,0
+Finance,15947,Durban,Education,18268,Cape Town,Tutor,0
+IT,13027,Durban,Finance,21316,Port Elizabeth,Accountant,0
+Retail,27072,Durban,Healthcare,17871,Cape Town,Nurse,0
+Finance,17895,Cape Town,IT,28941,Cape Town,IT Support,0
+Engineering,22426,Cape Town,Healthcare,21813,Port Elizabeth,Nurse,0
+Education,27797,Pretoria,Education,10504,Johannesburg,Teacher,0
+Engineering,19993,Durban,Healthcare,27060,Pretoria,Medical Assistant,0
+Healthcare,8620,Cape Town,Finance,16311,Cape Town,Financial Analyst,0
+Engineering,17884,Johannesburg,Engineering,14710,Durban,Electrical Engineer,0
+Retail,27831,Cape Town,Retail,25753,Port Elizabeth,Sales Assistant,0
+Healthcare,27524,Johannesburg,IT,29662,Johannesburg,IT Support,0
+Education,19364,Durban,Healthcare,13241,Port Elizabeth,Pharmacist,0
+Engineering,20986,Johannesburg,Retail,19214,Johannesburg,Store Manager,0
+Finance,12161,Pretoria,Education,15993,Durban,Teacher,0
+IT,20215,Cape Town,IT,15081,Pretoria,Software Developer,0
+Retail,15659,Durban,IT,26135,Durban,Web Designer,0
+Healthcare,17016,Johannesburg,IT,27432,Durban,Web Designer,0
+Finance,28594,Pretoria,Engineering,9977,Johannesburg,Electrical Engineer,0
+Education,8435,Durban,Education,24848,Port Elizabeth,Administrator,0
+Healthcare,13976,Port Elizabeth,Education,18315,Durban,Administrator,0
+Finance,28349,Pretoria,Engineering,18751,Port Elizabeth,Civil Engineer,0
+Healthcare,17167,Cape Town,IT,12208,Port Elizabeth,Web Designer,0
+Engineering,12517,Johannesburg,Engineering,25017,Pretoria,Civil Engineer,0
+Education,15459,Durban,Finance,11982,Johannesburg,Bookkeeper,0
+Retail,26630,Durban,Finance,15097,Johannesburg,Financial Analyst,0
+IT,25381,Durban,Engineering,21102,Pretoria,Civil Engineer,0
+Education,24638,Johannesburg,Healthcare,22302,Durban,Nurse,0
+Healthcare,18764,Port Elizabeth,Finance,11611,Port Elizabeth,Bookkeeper,0
+Education,14969,Cape Town,Healthcare,9070,Port Elizabeth,Pharmacist,0
+Retail,26619,Johannesburg,Engineering,8596,Cape Town,Mechanical Engineer,0
+Engineering,20475,Port Elizabeth,Finance,20416,Durban,Accountant,0
+Retail,18493,Durban,Education,20481,Cape Town,Teacher,0
+Retail,18113,Johannesburg,Engineering,10708,Durban,Mechanical Engineer,0
+Finance,22412,Pretoria,Finance,8669,Port Elizabeth,Financial Analyst,0
+Finance,9215,Durban,Finance,26326,Port Elizabeth,Bookkeeper,0
+Finance,11973,Port Elizabeth,IT,28864,Johannesburg,Software Developer,0
+Retail,14396,Durban,Education,10660,Port Elizabeth,Tutor,0
+Engineering,18233,Cape Town,Healthcare,18790,Cape Town,Medical Assistant,0
+Healthcare,25387,Johannesburg,Education,25676,Johannesburg,Tutor,0
+Finance,24446,Cape Town,Engineering,28788,Durban,Electrical Engineer,0
+Finance,9771,Cape Town,Retail,9851,Johannesburg,Sales Assistant,0
+Healthcare,11218,Johannesburg,Engineering,23552,Durban,Mechanical Engineer,0
+Education,8369,Port Elizabeth,Engineering,27287,Port Elizabeth,Mechanical Engineer,0
+Healthcare,18925,Johannesburg,Retail,14848,Port Elizabeth,Store Manager,0
+Finance,17595,Pretoria,Retail,11223,Pretoria,Cashier,0
+Healthcare,17126,Pretoria,Retail,16337,Durban,Sales Assistant,0
+Finance,9095,Port Elizabeth,Retail,25103,Port Elizabeth,Store Manager,0
+Retail,9712,Durban,Education,29785,Durban,Tutor,0
+Engineering,16077,Johannesburg,IT,8903,Pretoria,Software Developer,0
+Engineering,24529,Johannesburg,Finance,17429,Durban,Bookkeeper,0
+Finance,22075,Durban,Finance,20571,Cape Town,Financial Analyst,0
+Retail,16943,Durban,Finance,18121,Durban,Accountant,0
+IT,18722,Cape Town,Engineering,29419,Johannesburg,Civil Engineer,0
+Finance,8012,Port Elizabeth,Retail,24682,Cape Town,Store Manager,0
+Education,28997,Cape Town,Education,12645,Port Elizabeth,Administrator,0
+Engineering,16119,Johannesburg,Finance,27671,Pretoria,Bookkeeper,0
+Engineering,20700,Port Elizabeth,Retail,19827,Durban,Store Manager,0
+Finance,24224,Cape Town,Engineering,24451,Cape Town,Electrical Engineer,0
+Finance,23204,Port Elizabeth,Healthcare,25419,Durban,Nurse,0
+IT,12944,Durban,Engineering,22265,Port Elizabeth,Mechanical Engineer,0
+IT,9610,Durban,IT,15032,Johannesburg,IT Support,0
+IT,27316,Cape Town,IT,12533,Durban,Web Designer,0
+Engineering,8450,Cape Town,Engineering,24222,Pretoria,Electrical Engineer,0
+Healthcare,25588,Pretoria,Healthcare,13664,Cape Town,Medical Assistant,0
+Healthcare,12121,Cape Town,Education,21768,Cape Town,Teacher,0
+Engineering,19884,Pretoria,Finance,10962,Johannesburg,Bookkeeper,0
+Healthcare,27294,Pretoria,Finance,16127,Port Elizabeth,Financial Analyst,0
+Finance,16909,Durban,Finance,26363,Durban,Bookkeeper,0
+IT,9114,Johannesburg,Healthcare,11280,Pretoria,Pharmacist,0
+Finance,27315,Port Elizabeth,Healthcare,17303,Cape Town,Pharmacist,0
+Healthcare,16789,Durban,IT,15289,Port Elizabeth,Web Designer,0
+Healthcare,15731,Pretoria,Engineering,15737,Johannesburg,Civil Engineer,0
+Retail,23442,Port Elizabeth,Retail,18654,Johannesburg,Store Manager,0
+IT,12505,Johannesburg,Healthcare,25260,Durban,Pharmacist,0
+Retail,18127,Durban,Finance,23791,Port Elizabeth,Accountant,0
+Education,12136,Cape Town,Engineering,21779,Pretoria,Electrical Engineer,0
+Retail,16239,Port Elizabeth,Engineering,15547,Johannesburg,Mechanical Engineer,0
+Engineering,12842,Port Elizabeth,Finance,24675,Johannesburg,Bookkeeper,0
+Healthcare,29349,Port Elizabeth,Education,24037,Johannesburg,Teacher,0
+Education,29347,Port Elizabeth,Healthcare,13797,Port Elizabeth,Pharmacist,0
+Finance,13778,Cape Town,Education,26879,Pretoria,Administrator,0
+Finance,15151,Cape Town,Education,12087,Port Elizabeth,Administrator,0
+Engineering,18998,Port Elizabeth,IT,19194,Port Elizabeth,Software Developer,0
+IT,12048,Johannesburg,Retail,10308,Johannesburg,Cashier,0
+Education,29594,Cape Town,IT,21019,Johannesburg,IT Support,0
+Healthcare,10628,Durban,Education,21858,Pretoria,Administrator,0
+Finance,24068,Durban,Engineering,10025,Cape Town,Mechanical Engineer,0
+Education,23260,Johannesburg,Finance,24657,Cape Town,Financial Analyst,0
+IT,17430,Port Elizabeth,Healthcare,15111,Johannesburg,Nurse,0
+Healthcare,24227,Pretoria,IT,28601,Durban,Web Designer,0
+Education,10138,Port Elizabeth,Finance,16194,Johannesburg,Financial Analyst,0
+Healthcare,16419,Cape Town,Retail,28233,Pretoria,Sales Assistant,0
+Healthcare,23056,Pretoria,Engineering,28831,Port Elizabeth,Electrical Engineer,0
+IT,8745,Pretoria,Education,15409,Pretoria,Teacher,0
+Engineering,22279,Cape Town,Finance,18071,Port Elizabeth,Bookkeeper,0
+Engineering,23966,Pretoria,IT,16552,Johannesburg,IT Support,0
+IT,24633,Port Elizabeth,Engineering,26176,Port Elizabeth,Electrical Engineer,0
+Education,16557,Durban,Healthcare,14673,Pretoria,Nurse,0
+Retail,12746,Pretoria,Retail,20216,Durban,Cashier,0
+IT,19693,Durban,IT,17679,Cape Town,Web Designer,0
+Finance,24932,Cape Town,Retail,9002,Cape Town,Cashier,0
+IT,17085,Cape Town,Retail,26050,Pretoria,Sales Assistant,0
+Engineering,26683,Johannesburg,Engineering,26277,Durban,Civil Engineer,0
+Healthcare,10031,Cape Town,Engineering,16258,Cape Town,Civil Engineer,0
+Finance,23650,Durban,Education,10069,Pretoria,Administrator,0
+Engineering,19351,Pretoria,Education,28063,Cape Town,Administrator,0
+IT,10084,Durban,Finance,27731,Durban,Accountant,0
+Finance,13927,Port Elizabeth,IT,23598,Durban,IT Support,0
+Finance,21446,Johannesburg,Retail,24415,Johannesburg,Store Manager,0
+IT,25982,Port Elizabeth,Retail,17212,Cape Town,Sales Assistant,0
+Healthcare,20017,Cape Town,Engineering,29550,Pretoria,Electrical Engineer,0
+Engineering,22298,Johannesburg,Engineering,8561,Johannesburg,Electrical Engineer,0
+Healthcare,18209,Pretoria,Education,10215,Durban,Tutor,0
+IT,14845,Durban,Healthcare,23595,Durban,Nurse,0
+IT,20621,Pretoria,Retail,15536,Port Elizabeth,Cashier,0
+IT,24860,Durban,Engineering,24248,Johannesburg,Mechanical Engineer,0
+Education,16178,Cape Town,Healthcare,10649,Cape Town,Nurse,0
+IT,15871,Pretoria,Finance,21974,Pretoria,Accountant,0
+Finance,9437,Cape Town,Retail,10657,Pretoria,Sales Assistant,0
+Finance,10592,Pretoria,Retail,13892,Port Elizabeth,Cashier,0
+Finance,27501,Port Elizabeth,Healthcare,20842,Johannesburg,Pharmacist,0
+Healthcare,10200,Durban,IT,28065,Port Elizabeth,IT Support,0
+Healthcare,16686,Cape Town,Finance,20151,Johannesburg,Financial Analyst,0
+Education,10072,Durban,IT,24255,Pretoria,IT Support,0
+Healthcare,14305,Pretoria,Finance,16319,Johannesburg,Financial Analyst,0
+IT,9097,Johannesburg,Finance,14345,Port Elizabeth,Bookkeeper,0
+Healthcare,28165,Cape Town,Finance,25498,Pretoria,Financial Analyst,0
+Engineering,26924,Port Elizabeth,Finance,26638,Durban,Bookkeeper,0
+Retail,26150,Johannesburg,Education,10564,Port Elizabeth,Teacher,0
+Education,9128,Pretoria,Healthcare,11667,Johannesburg,Nurse,0
+Engineering,27606,Johannesburg,Engineering,11813,Johannesburg,Mechanical Engineer,0
+IT,9822,Johannesburg,Finance,22810,Johannesburg,Accountant,0
+Retail,25821,Cape Town,IT,9156,Johannesburg,IT Support,0
+Retail,11133,Johannesburg,Engineering,15798,Johannesburg,Civil Engineer,0
+Education,15166,Cape Town,Education,19671,Durban,Tutor,0
+Healthcare,10048,Port Elizabeth,Engineering,16717,Pretoria,Civil Engineer,0
+Finance,15892,Cape Town,Healthcare,16199,Pretoria,Medical Assistant,0
+Finance,21677,Durban,Finance,23986,Cape Town,Bookkeeper,0
+Engineering,24461,Port Elizabeth,Retail,15521,Pretoria,Cashier,0
+Retail,14361,Cape Town,Retail,28692,Port Elizabeth,Store Manager,0
+Retail,17864,Durban,IT,12602,Pretoria,Software Developer,0
+IT,17249,Durban,Healthcare,19694,Pretoria,Pharmacist,0
+Education,12209,Port Elizabeth,Finance,14359,Port Elizabeth,Bookkeeper,0
+Education,18375,Johannesburg,Healthcare,22372,Port Elizabeth,Pharmacist,0
+Retail,12133,Johannesburg,IT,19219,Port Elizabeth,Software Developer,0
+Healthcare,24754,Durban,Finance,21331,Pretoria,Accountant,0
+Education,23458,Johannesburg,IT,9399,Port Elizabeth,Software Developer,0
+Retail,14206,Durban,Retail,12303,Johannesburg,Cashier,0
+Education,15894,Durban,Finance,14718,Port Elizabeth,Accountant,0
+Education,26646,Cape Town,Engineering,19320,Johannesburg,Mechanical Engineer,0
+Retail,25343,Cape Town,Retail,18770,Johannesburg,Sales Assistant,0
+Finance,21556,Johannesburg,Engineering,12626,Durban,Electrical Engineer,0
+Education,18741,Johannesburg,Retail,15232,Pretoria,Cashier,0
+Finance,29273,Cape Town,Education,27009,Johannesburg,Tutor,0
+Education,12804,Johannesburg,Engineering,8330,Pretoria,Civil Engineer,0
+Healthcare,27955,Pretoria,Engineering,28550,Pretoria,Electrical Engineer,0
+Healthcare,19786,Johannesburg,Healthcare,28088,Johannesburg,Medical Assistant,0
+Retail,13348,Johannesburg,IT,14090,Durban,Software Developer,0
+Finance,9690,Port Elizabeth,Healthcare,29338,Durban,Medical Assistant,0
+Finance,24888,Durban,Finance,19377,Durban,Bookkeeper,0
+Education,15619,Pretoria,IT,10106,Johannesburg,Software Developer,0
+Education,28321,Durban,Retail,14827,Johannesburg,Cashier,0
+Engineering,22824,Cape Town,Education,18848,Durban,Tutor,0
+Finance,13994,Port Elizabeth,Healthcare,23412,Durban,Medical Assistant,0
+Education,28898,Cape Town,Engineering,27681,Johannesburg,Electrical Engineer,0
+Engineering,23963,Johannesburg,Education,25554,Durban,Teacher,0
+Finance,13210,Durban,Retail,15399,Cape Town,Cashier,0
+Finance,22871,Pretoria,Education,9674,Pretoria,Teacher,0
+Finance,15419,Port Elizabeth,Finance,23549,Cape Town,Financial Analyst,0
+Healthcare,14281,Durban,Healthcare,17050,Johannesburg,Pharmacist,0
+Finance,19277,Cape Town,Engineering,28189,Pretoria,Mechanical Engineer,0
+Healthcare,25050,Cape Town,IT,25897,Pretoria,Software Developer,0
+Finance,15061,Pretoria,Healthcare,16513,Durban,Medical Assistant,0
+IT,8732,Pretoria,Finance,13669,Cape Town,Bookkeeper,0
+Education,12800,Durban,Engineering,25792,Port Elizabeth,Mechanical Engineer,0
+Healthcare,21944,Cape Town,Healthcare,9581,Pretoria,Nurse,0
+Finance,25717,Pretoria,Engineering,27636,Cape Town,Electrical Engineer,0
+Retail,13118,Durban,Engineering,12510,Port Elizabeth,Mechanical Engineer,0
+Engineering,21538,Durban,Healthcare,12664,Port Elizabeth,Pharmacist,0
+Retail,17987,Johannesburg,Healthcare,23562,Port Elizabeth,Medical Assistant,0
+Finance,10048,Cape Town,Healthcare,11688,Durban,Nurse,0
+Healthcare,19672,Cape Town,IT,13811,Durban,Web Designer,0
+Finance,28257,Johannesburg,IT,23109,Cape Town,Software Developer,0
+Engineering,10758,Cape Town,Engineering,10084,Pretoria,Civil Engineer,0
+Healthcare,10400,Pretoria,Finance,17664,Cape Town,Bookkeeper,0
+Retail,23125,Durban,Education,19841,Durban,Tutor,0
+Healthcare,25064,Port Elizabeth,IT,26456,Durban,Software Developer,0
+Education,17927,Durban,Healthcare,10771,Durban,Pharmacist,0
+Retail,17889,Durban,Engineering,22301,Cape Town,Mechanical Engineer,0
+Retail,28690,Pretoria,Retail,13763,Cape Town,Cashier,0
+Healthcare,21967,Port Elizabeth,Education,15943,Durban,Teacher,0
+Education,24026,Port Elizabeth,Education,25049,Pretoria,Administrator,0
+Education,16631,Pretoria,IT,8968,Durban,Web Designer,0
+IT,13934,Cape Town,IT,25888,Pretoria,Web Designer,0
+Healthcare,11428,Port Elizabeth,IT,14731,Cape Town,IT Support,0
+Retail,29432,Pretoria,Finance,29159,Cape Town,Accountant,0
+Education,25633,Johannesburg,Healthcare,18801,Johannesburg,Pharmacist,0
+Healthcare,11434,Cape Town,Retail,16026,Durban,Store Manager,0
+IT,16410,Durban,Education,29684,Durban,Tutor,0
+Education,19443,Port Elizabeth,Healthcare,22149,Durban,Nurse,0
+Education,17329,Pretoria,Engineering,17457,Johannesburg,Electrical Engineer,0
+Retail,25070,Johannesburg,Finance,29566,Pretoria,Accountant,0
+Engineering,22603,Port Elizabeth,Education,13087,Johannesburg,Administrator,0
+Healthcare,8933,Johannesburg,Healthcare,9082,Cape Town,Medical Assistant,0
+Engineering,27305,Port Elizabeth,Education,27473,Johannesburg,Tutor,0
+Healthcare,15462,Johannesburg,IT,12592,Port Elizabeth,Software Developer,0
+Education,12551,Cape Town,IT,19942,Cape Town,IT Support,0
+IT,13745,Cape Town,Finance,18409,Pretoria,Financial Analyst,0
+IT,18235,Pretoria,Education,21537,Pretoria,Tutor,0
+Healthcare,23769,Cape Town,Engineering,11954,Port Elizabeth,Electrical Engineer,0
+Education,25119,Port Elizabeth,Healthcare,12658,Johannesburg,Nurse,0
+Healthcare,24708,Pretoria,IT,20008,Pretoria,IT Support,0
+Retail,8938,Cape Town,Engineering,22387,Durban,Electrical Engineer,0
+Finance,23093,Pretoria,Finance,15003,Johannesburg,Bookkeeper,0
+Education,11071,Cape Town,Retail,20830,Johannesburg,Store Manager,0
+Finance,20791,Johannesburg,IT,23675,Johannesburg,Web Designer,0
+Engineering,17639,Port Elizabeth,Engineering,18741,Cape Town,Electrical Engineer,0
+Engineering,12851,Durban,Healthcare,9299,Port Elizabeth,Nurse,0
+Finance,11208,Cape Town,Healthcare,12157,Port Elizabeth,Pharmacist,0
+Engineering,11749,Port Elizabeth,Education,13206,Pretoria,Tutor,0
+Healthcare,29647,Durban,Finance,16684,Port Elizabeth,Bookkeeper,0
+Healthcare,28323,Port Elizabeth,IT,14916,Johannesburg,IT Support,0
+Finance,20856,Durban,IT,26753,Durban,Web Designer,0
+IT,13241,Cape Town,Healthcare,28606,Johannesburg,Pharmacist,0
+Engineering,27799,Durban,Retail,11746,Pretoria,Cashier,0
+IT,13126,Durban,Retail,11714,Johannesburg,Store Manager,0
+Engineering,29129,Port Elizabeth,IT,26617,Johannesburg,IT Support,0
+Engineering,11510,Port Elizabeth,Finance,15909,Johannesburg,Accountant,0
+IT,8143,Durban,Education,10550,Pretoria,Teacher,0
+IT,12359,Pretoria,Engineering,18102,Durban,Electrical Engineer,0
+Retail,20811,Johannesburg,Retail,11241,Johannesburg,Store Manager,0
+Finance,10213,Durban,Engineering,10470,Pretoria,Mechanical Engineer,0
+Retail,28058,Pretoria,Education,8439,Durban,Administrator,0
+Engineering,18682,Pretoria,Engineering,12307,Port Elizabeth,Mechanical Engineer,0
+Finance,15341,Johannesburg,Education,8649,Cape Town,Administrator,0
+Engineering,22085,Port Elizabeth,Finance,26948,Cape Town,Bookkeeper,0
+Retail,15603,Port Elizabeth,Retail,23125,Pretoria,Store Manager,0
+IT,24769,Cape Town,IT,19828,Johannesburg,Web Designer,0
+IT,8373,Pretoria,Retail,19532,Port Elizabeth,Sales Assistant,0
+Engineering,24617,Pretoria,IT,12273,Pretoria,IT Support,0
+IT,19894,Johannesburg,IT,24771,Durban,Web Designer,0
+Engineering,29910,Durban,Engineering,24125,Johannesburg,Civil Engineer,0
+Healthcare,12552,Pretoria,Retail,28570,Durban,Store Manager,0
+Retail,14609,Johannesburg,Finance,21033,Port Elizabeth,Accountant,0
+Healthcare,11083,Cape Town,Education,21829,Durban,Administrator,0
+IT,25078,Johannesburg,Healthcare,29357,Durban,Nurse,0
+Retail,24381,Durban,Retail,29449,Pretoria,Store Manager,0
+Healthcare,13701,Durban,Healthcare,17234,Pretoria,Pharmacist,0
+Finance,21745,Port Elizabeth,Finance,17639,Pretoria,Accountant,0
+IT,25162,Pretoria,Finance,12745,Port Elizabeth,Accountant,0
+Healthcare,11993,Johannesburg,Education,15821,Port Elizabeth,Tutor,0
+Finance,23553,Durban,Finance,23431,Port Elizabeth,Bookkeeper,0
+Education,11808,Pretoria,Healthcare,26803,Johannesburg,Medical Assistant,0
+Retail,8320,Durban,Engineering,8775,Durban,Civil Engineer,0
+Education,12767,Durban,Engineering,14723,Durban,Electrical Engineer,0
+Healthcare,9060,Port Elizabeth,Engineering,26621,Port Elizabeth,Civil Engineer,0
+Healthcare,27931,Port Elizabeth,Retail,14892,Durban,Store Manager,0
+Retail,11307,Pretoria,IT,9874,Port Elizabeth,Software Developer,0
+Healthcare,19789,Cape Town,Education,22440,Port Elizabeth,Teacher,0
+Engineering,12411,Durban,Healthcare,20058,Johannesburg,Nurse,0
+Finance,18571,Cape Town,Engineering,13401,Cape Town,Mechanical Engineer,0
+Education,25832,Pretoria,Retail,20457,Durban,Cashier,0
+Education,21213,Pretoria,Finance,23164,Durban,Accountant,0
+Retail,22615,Cape Town,Finance,12766,Cape Town,Bookkeeper,0
+Engineering,27430,Johannesburg,Education,19536,Durban,Teacher,0
+Engineering,29660,Johannesburg,Education,14597,Johannesburg,Teacher,0
+Healthcare,25898,Pretoria,IT,16302,Pretoria,Software Developer,0
+Healthcare,14268,Pretoria,IT,24400,Johannesburg,IT Support,0
+Finance,12155,Durban,Education,21087,Johannesburg,Teacher,0
+IT,17766,Johannesburg,Finance,17706,Cape Town,Bookkeeper,0
+Education,28124,Durban,Retail,20651,Johannesburg,Sales Assistant,0
+Finance,9067,Cape Town,Retail,16502,Johannesburg,Cashier,0
+Healthcare,19291,Pretoria,IT,15929,Durban,Software Developer,0
+Education,8723,Cape Town,Retail,13501,Cape Town,Sales Assistant,0
+Education,28788,Durban,Retail,29356,Durban,Sales Assistant,0
+Retail,10089,Durban,Finance,24386,Port Elizabeth,Bookkeeper,0
+Education,9759,Pretoria,Finance,18771,Cape Town,Bookkeeper,0
+Education,19762,Johannesburg,Engineering,26539,Johannesburg,Mechanical Engineer,0
+Education,11578,Pretoria,Engineering,9359,Johannesburg,Civil Engineer,0
+Finance,14442,Port Elizabeth,Finance,16030,Durban,Bookkeeper,0
+Retail,28480,Durban,Education,24022,Durban,Administrator,0
+Retail,8781,Port Elizabeth,Retail,22654,Durban,Sales Assistant,0
+Retail,17453,Cape Town,Healthcare,13898,Pretoria,Pharmacist,0
+Education,12888,Johannesburg,Finance,8980,Johannesburg,Accountant,0
+Education,18225,Pretoria,Education,24919,Port Elizabeth,Teacher,0
+Education,10005,Pretoria,Engineering,23744,Pretoria,Electrical Engineer,0
+Retail,25229,Johannesburg,Engineering,22299,Cape Town,Electrical Engineer,0
+Engineering,17625,Durban,Retail,24414,Johannesburg,Store Manager,0
+Healthcare,22833,Johannesburg,Retail,25330,Durban,Store Manager,0
+Education,20539,Durban,Retail,22319,Cape Town,Sales Assistant,0
+Retail,12750,Cape Town,Education,14674,Port Elizabeth,Teacher,0
+Education,17598,Pretoria,Education,13047,Cape Town,Teacher,0
+Engineering,16034,Johannesburg,IT,27215,Durban,Web Designer,0
+Engineering,12043,Johannesburg,Education,13840,Port Elizabeth,Teacher,0
+Retail,21577,Durban,Finance,24711,Cape Town,Accountant,0
+Healthcare,22372,Johannesburg,Healthcare,9543,Pretoria,Nurse,0
+Retail,20244,Cape Town,IT,8335,Durban,IT Support,0
+Finance,18517,Johannesburg,Retail,19689,Johannesburg,Cashier,0
+Retail,19929,Pretoria,Engineering,14212,Cape Town,Electrical Engineer,0
+Engineering,11094,Johannesburg,Education,22007,Durban,Teacher,0
+Engineering,17572,Cape Town,Healthcare,22909,Durban,Pharmacist,0
+IT,15481,Cape Town,Engineering,8790,Johannesburg,Civil Engineer,0
+Retail,21555,Durban,Finance,26291,Pretoria,Bookkeeper,0
+Finance,12357,Pretoria,Engineering,10450,Durban,Mechanical Engineer,0
+Retail,26937,Cape Town,Retail,12562,Cape Town,Sales Assistant,0
+IT,8444,Johannesburg,Education,15100,Cape Town,Tutor,0
+Finance,29393,Cape Town,Finance,11208,Cape Town,Accountant,0
+Finance,12279,Pretoria,Education,8949,Cape Town,Tutor,0
+Finance,20946,Port Elizabeth,Education,22919,Pretoria,Tutor,0
+Engineering,14268,Durban,Education,13717,Port Elizabeth,Teacher,0
+Retail,10649,Port Elizabeth,Education,16236,Durban,Tutor,0
+Education,12452,Durban,Education,28063,Pretoria,Tutor,0
+Finance,10292,Johannesburg,Finance,22153,Port Elizabeth,Financial Analyst,0
+Finance,16191,Durban,IT,21019,Pretoria,Software Developer,0
+Retail,22300,Cape Town,Healthcare,14149,Pretoria,Medical Assistant,0
+Engineering,13482,Pretoria,Engineering,23427,Cape Town,Electrical Engineer,0
+Education,10212,Port Elizabeth,Engineering,19397,Pretoria,Civil Engineer,0
+Education,16279,Durban,Retail,16717,Johannesburg,Sales Assistant,0
+Healthcare,29591,Port Elizabeth,Healthcare,29409,Johannesburg,Pharmacist,0
+Finance,28838,Pretoria,Retail,10241,Durban,Cashier,0
+Education,26646,Johannesburg,Engineering,13931,Johannesburg,Electrical Engineer,0
+Engineering,27374,Johannesburg,Retail,20605,Durban,Cashier,0
+Retail,22751,Port Elizabeth,Education,14239,Port Elizabeth,Tutor,0
+IT,15188,Cape Town,Retail,19863,Pretoria,Cashier,0
+Engineering,9020,Port Elizabeth,Healthcare,28930,Johannesburg,Pharmacist,0
+Engineering,20515,Johannesburg,Engineering,27104,Port Elizabeth,Electrical Engineer,0
+Education,12569,Port Elizabeth,IT,20412,Johannesburg,Software Developer,0
+Engineering,19394,Port Elizabeth,Healthcare,17805,Port Elizabeth,Medical Assistant,0
+Engineering,15610,Pretoria,Retail,20885,Pretoria,Sales Assistant,0
+Finance,19225,Johannesburg,Education,8994,Port Elizabeth,Tutor,0
+Education,10405,Port Elizabeth,Retail,21385,Cape Town,Store Manager,0
+Finance,11984,Pretoria,Healthcare,10369,Cape Town,Pharmacist,0
+IT,25011,Durban,Education,13175,Durban,Teacher,0
+Retail,20414,Durban,IT,15050,Cape Town,IT Support,0
+Finance,15420,Cape Town,Retail,10486,Johannesburg,Sales Assistant,0
+Healthcare,13489,Port Elizabeth,Engineering,13456,Durban,Civil Engineer,0
+IT,20304,Port Elizabeth,Retail,8003,Pretoria,Cashier,0
+Education,23797,Durban,Finance,21370,Johannesburg,Financial Analyst,0
+IT,25553,Port Elizabeth,Finance,11956,Port Elizabeth,Accountant,0
+IT,25326,Johannesburg,Education,10714,Cape Town,Administrator,0
+Education,26606,Johannesburg,Education,13982,Cape Town,Administrator,0
+IT,28882,Port Elizabeth,Engineering,18907,Johannesburg,Civil Engineer,0
+Healthcare,15833,Port Elizabeth,Engineering,26930,Johannesburg,Civil Engineer,0
+Education,27274,Johannesburg,Healthcare,15166,Port Elizabeth,Nurse,0
+Finance,29512,Pretoria,Engineering,12034,Johannesburg,Electrical Engineer,0
+Finance,12092,Durban,Education,25035,Durban,Teacher,0
+Engineering,27069,Pretoria,Engineering,26753,Johannesburg,Electrical Engineer,0
+Healthcare,8180,Cape Town,Healthcare,13516,Durban,Pharmacist,0
+Finance,21310,Johannesburg,Retail,18269,Pretoria,Store Manager,0
+IT,26018,Port Elizabeth,IT,9980,Port Elizabeth,IT Support,0
+Education,18734,Durban,Engineering,28974,Johannesburg,Mechanical Engineer,0
+Retail,11840,Port Elizabeth,Engineering,18803,Johannesburg,Mechanical Engineer,0
+Engineering,21420,Pretoria,Finance,23281,Port Elizabeth,Bookkeeper,0
+Retail,17209,Durban,Retail,18223,Port Elizabeth,Store Manager,0
+Engineering,18201,Cape Town,Retail,20967,Cape Town,Sales Assistant,0
+IT,20163,Cape Town,Finance,14693,Johannesburg,Bookkeeper,0
+Finance,10254,Johannesburg,Retail,21509,Pretoria,Cashier,0
+Engineering,14162,Johannesburg,Retail,18739,Pretoria,Sales Assistant,0
+Education,26908,Johannesburg,IT,20086,Pretoria,IT Support,0
+Retail,28420,Durban,Education,9294,Johannesburg,Administrator,0
+Healthcare,21014,Cape Town,IT,23208,Johannesburg,Software Developer,0
+Engineering,11285,Port Elizabeth,Retail,22979,Durban,Store Manager,0
+Education,28589,Port Elizabeth,Finance,15881,Cape Town,Bookkeeper,0
+Education,9340,Pretoria,Retail,26498,Cape Town,Cashier,0
+Finance,18933,Cape Town,IT,18343,Durban,IT Support,0
+Education,24973,Durban,Healthcare,9493,Cape Town,Medical Assistant,0
+Healthcare,17961,Durban,Education,18692,Durban,Tutor,0
+Healthcare,25658,Cape Town,Engineering,16210,Durban,Civil Engineer,0
+Education,29551,Johannesburg,Engineering,21766,Cape Town,Electrical Engineer,0
+Education,20808,Johannesburg,Education,14831,Port Elizabeth,Tutor,0
+Retail,22387,Johannesburg,Engineering,17958,Pretoria,Mechanical Engineer,0
+Finance,19931,Durban,Healthcare,14190,Cape Town,Nurse,0
+Education,19422,Durban,Finance,25357,Pretoria,Bookkeeper,0
+Finance,18412,Cape Town,Finance,21856,Durban,Accountant,0
+Healthcare,15279,Johannesburg,Education,28046,Johannesburg,Tutor,0
+Healthcare,13749,Pretoria,Finance,15477,Johannesburg,Financial Analyst,0
+Engineering,23308,Johannesburg,IT,16707,Durban,IT Support,0
+IT,26658,Pretoria,Finance,19319,Cape Town,Accountant,0
+Retail,10173,Durban,Finance,18260,Johannesburg,Financial Analyst,0
+Education,14915,Pretoria,IT,15533,Johannesburg,IT Support,0
+Finance,25136,Johannesburg,Healthcare,22927,Durban,Pharmacist,0
+IT,9455,Port Elizabeth,Retail,13435,Cape Town,Cashier,0
+Retail,20618,Durban,Engineering,18359,Pretoria,Electrical Engineer,0
+Healthcare,23835,Durban,Education,9769,Pretoria,Teacher,0
+IT,24757,Johannesburg,Engineering,13630,Pretoria,Electrical Engineer,0
+Education,26355,Port Elizabeth,IT,22857,Cape Town,IT Support,0
+Engineering,22537,Port Elizabeth,Education,18119,Durban,Tutor,0
+Education,21997,Pretoria,Retail,11271,Pretoria,Cashier,0
+Engineering,22364,Pretoria,Retail,19901,Durban,Cashier,0
+Healthcare,18190,Johannesburg,Retail,21198,Pretoria,Sales Assistant,0
+Healthcare,14573,Cape Town,Finance,21805,Pretoria,Bookkeeper,0
+Healthcare,21923,Durban,Healthcare,14207,Pretoria,Nurse,0
+Finance,29611,Durban,Education,12585,Pretoria,Administrator,0
+IT,26555,Durban,Education,24373,Cape Town,Tutor,0
+IT,14271,Durban,Engineering,25368,Pretoria,Electrical Engineer,0
+Retail,27002,Durban,Finance,11986,Cape Town,Accountant,0
+Education,26811,Johannesburg,Healthcare,10279,Port Elizabeth,Pharmacist,0
+IT,8348,Durban,Retail,11416,Port Elizabeth,Store Manager,0
+Retail,24067,Cape Town,Education,17639,Durban,Administrator,0
+IT,8267,Durban,Retail,10735,Durban,Cashier,0
+Retail,14611,Cape Town,Retail,12565,Cape Town,Store Manager,1
+Retail,9319,Port Elizabeth,Education,25406,Cape Town,Tutor,0
+Engineering,26242,Johannesburg,Retail,20386,Pretoria,Sales Assistant,0
+Retail,8929,Cape Town,Healthcare,17322,Durban,Nurse,0
+Finance,8356,Cape Town,IT,14287,Port Elizabeth,Web Designer,0
+Retail,28562,Pretoria,Retail,18605,Pretoria,Store Manager,0
+Education,14204,Johannesburg,Finance,9163,Durban,Bookkeeper,0
+IT,19063,Durban,Engineering,13579,Pretoria,Civil Engineer,0
+Retail,25938,Johannesburg,Finance,15750,Johannesburg,Bookkeeper,0
+Retail,28501,Cape Town,Healthcare,8699,Pretoria,Pharmacist,0
+Engineering,9067,Johannesburg,Education,17694,Cape Town,Teacher,0
+Education,8353,Pretoria,Retail,18123,Cape Town,Cashier,0
+IT,23336,Cape Town,Healthcare,22840,Johannesburg,Medical Assistant,0
+Retail,28836,Johannesburg,Finance,11723,Johannesburg,Financial Analyst,0
+IT,17885,Johannesburg,Education,12631,Johannesburg,Administrator,0
+Retail,23086,Cape Town,Education,9380,Durban,Tutor,0
+Engineering,14970,Durban,Engineering,9194,Pretoria,Electrical Engineer,0
+Finance,27420,Cape Town,Healthcare,26538,Port Elizabeth,Medical Assistant,0
+Retail,20124,Cape Town,IT,8938,Johannesburg,Web Designer,0
+IT,16743,Durban,Finance,12461,Johannesburg,Bookkeeper,0
+Engineering,23452,Durban,Healthcare,29120,Pretoria,Pharmacist,0
+Healthcare,28195,Durban,Retail,27070,Johannesburg,Cashier,0
+Education,22703,Cape Town,IT,25243,Durban,Software Developer,0
+Finance,12233,Durban,Healthcare,29890,Pretoria,Nurse,0
+Engineering,18111,Port Elizabeth,Healthcare,29870,Durban,Nurse,0
+Finance,26279,Cape Town,Healthcare,8260,Port Elizabeth,Pharmacist,0
+Healthcare,22063,Pretoria,IT,9583,Port Elizabeth,Software Developer,0
+Finance,9874,Port Elizabeth,Education,18203,Johannesburg,Teacher,0
+Finance,15983,Johannesburg,Engineering,14953,Cape Town,Electrical Engineer,0
+IT,10426,Durban,Healthcare,8087,Durban,Medical Assistant,0
+IT,14083,Pretoria,Engineering,10660,Johannesburg,Civil Engineer,0
+Finance,22592,Johannesburg,Education,23358,Port Elizabeth,Tutor,0
+Education,9740,Cape Town,Education,23769,Pretoria,Administrator,0
+Engineering,23529,Cape Town,IT,8805,Cape Town,Software Developer,0
+Education,21210,Port Elizabeth,Retail,28635,Cape Town,Cashier,0
+Healthcare,22232,Johannesburg,Retail,24125,Port Elizabeth,Cashier,0
+Education,15303,Cape Town,Finance,15107,Durban,Financial Analyst,0
+Finance,27092,Port Elizabeth,Engineering,11130,Cape Town,Mechanical Engineer,0
+Retail,18038,Durban,Retail,12116,Pretoria,Store Manager,0
+Retail,11848,Johannesburg,IT,29012,Pretoria,IT Support,0
+Engineering,28386,Durban,Finance,20362,Cape Town,Accountant,0
+Engineering,17129,Durban,Healthcare,15946,Pretoria,Medical Assistant,0
+IT,29888,Cape Town,Education,10564,Durban,Administrator,0
+Retail,26108,Durban,Education,19224,Johannesburg,Teacher,0
+Finance,14124,Cape Town,Engineering,14415,Port Elizabeth,Civil Engineer,0
+IT,9333,Pretoria,Engineering,14530,Johannesburg,Mechanical Engineer,0
+Retail,26994,Port Elizabeth,Engineering,20502,Cape Town,Mechanical Engineer,0
+IT,29973,Durban,Engineering,12366,Port Elizabeth,Mechanical Engineer,0
+Education,22435,Johannesburg,Engineering,9606,Port Elizabeth,Electrical Engineer,0
+Finance,11076,Pretoria,Engineering,9383,Cape Town,Mechanical Engineer,0
+Engineering,19539,Johannesburg,Engineering,17965,Pretoria,Civil Engineer,0
+Healthcare,21231,Johannesburg,Retail,21551,Johannesburg,Store Manager,0
+Healthcare,21203,Cape Town,Healthcare,12722,Johannesburg,Nurse,0
+Retail,16517,Durban,Retail,21380,Durban,Store Manager,1
+IT,9250,Pretoria,IT,20543,Cape Town,IT Support,0
+Healthcare,18541,Cape Town,Engineering,25968,Durban,Civil Engineer,0
+Finance,29086,Pretoria,Healthcare,20121,Johannesburg,Medical Assistant,0
+Engineering,14300,Pretoria,IT,13337,Durban,IT Support,0
+Engineering,28665,Johannesburg,IT,28468,Pretoria,IT Support,0
+Retail,17542,Port Elizabeth,Finance,8511,Cape Town,Accountant,0
+IT,22971,Pretoria,Education,20441,Port Elizabeth,Tutor,0
+Healthcare,22986,Johannesburg,Education,20117,Cape Town,Tutor,0
+Retail,11202,Cape Town,Retail,29601,Port Elizabeth,Cashier,0
+Finance,14600,Port Elizabeth,Finance,16577,Pretoria,Accountant,0
+IT,11842,Pretoria,Retail,28628,Cape Town,Sales Assistant,0
+Finance,8333,Cape Town,IT,20157,Cape Town,Web Designer,0
+Healthcare,23677,Cape Town,Finance,10839,Cape Town,Bookkeeper,0
+Engineering,23319,Pretoria,Finance,29041,Johannesburg,Accountant,0
+Engineering,22262,Pretoria,IT,23980,Pretoria,Web Designer,0
+IT,19363,Johannesburg,Healthcare,13332,Johannesburg,Nurse,0
+IT,29449,Johannesburg,Healthcare,10182,Johannesburg,Medical Assistant,0
+Engineering,15058,Johannesburg,IT,24224,Port Elizabeth,IT Support,0
+Healthcare,23530,Pretoria,Retail,11366,Durban,Sales Assistant,0
+IT,9389,Cape Town,IT,19499,Johannesburg,IT Support,0
+Healthcare,24547,Durban,Retail,23323,Pretoria,Store Manager,0
+Retail,19735,Pretoria,IT,19634,Pretoria,Software Developer,0
+IT,22061,Port Elizabeth,Education,18864,Johannesburg,Teacher,0
+Engineering,21902,Johannesburg,Engineering,8020,Cape Town,Mechanical Engineer,0
+Education,21892,Pretoria,Finance,14383,Pretoria,Accountant,0
+Retail,15213,Durban,Healthcare,14243,Durban,Nurse,0
+Finance,24611,Cape Town,Retail,10324,Johannesburg,Cashier,0
+IT,16954,Pretoria,Healthcare,24419,Port Elizabeth,Medical Assistant,0
+Healthcare,17511,Durban,Engineering,11297,Pretoria,Electrical Engineer,0
+Engineering,13215,Durban,Engineering,13135,Durban,Mechanical Engineer,1
+Retail,29321,Pretoria,IT,9685,Cape Town,IT Support,0
+Education,8744,Durban,Healthcare,16148,Cape Town,Nurse,0
+Finance,17994,Johannesburg,Retail,16132,Cape Town,Store Manager,0
+Retail,8287,Johannesburg,IT,22813,Pretoria,Software Developer,0
+Retail,13975,Port Elizabeth,Engineering,12201,Cape Town,Civil Engineer,0
+Retail,22827,Port Elizabeth,IT,13522,Durban,IT Support,0
+Healthcare,16561,Johannesburg,Engineering,23516,Durban,Mechanical Engineer,0
+IT,12875,Port Elizabeth,Finance,8573,Johannesburg,Bookkeeper,0
+Retail,15403,Durban,Education,24048,Cape Town,Tutor,0
+Healthcare,12416,Cape Town,IT,17413,Pretoria,Software Developer,0
+Education,8146,Cape Town,Education,29473,Durban,Tutor,0
+Retail,12186,Durban,Retail,9524,Port Elizabeth,Cashier,0
