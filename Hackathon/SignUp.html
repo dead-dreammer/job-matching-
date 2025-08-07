@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - JobMatcher</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .signup-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      color: white;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, select, textarea {
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    button {
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .back-btn {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+      margin-top: 20px;
+    }
+
+    .back-btn:hover {
+      background-color: white;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create Your JobMatcher Account</h2>
+    <form onsubmit="return validateForm()">
+      <input type="text" id="fname" placeholder="First Name: " required />
+      <input type="text" id="lname" placeholder="Last Name: " required />
+      <input type="text" id="username" placeholder="Username: " required />
+      <input type="email" id="email" placeholder="Email: " required />
+      <input type="password" id="password" placeholder="Password: " required />
+      <input type="password" id="confirmPassword" placeholder="Re-enter Password: " required />
+      <input type="text" id="hours" placeholder="Desired hours of work: " required />
+      <input type="text" id="salary" placeholder="Expected salary range: " required />
+      <input type="text" id="location" placeholder="Location: " required />
+      <textarea id="skills" placeholder="Skills and experience: " required></textarea>
+      <select id="jobType" required>
+        <option value="" disabled selected>Select Preferred Job Type</option>
+        <option value="Formal">Formal</option>
+        <option value="Informal">Informal</option>
+        <option value="Both">Both</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <a href="LoginPage.html">
+      <button class="back-btn">Back to Login</button>
+    </a>
+  </div>
+
+  <script>
+    function validateForm() {
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
