@@ -3,6 +3,7 @@ from flask import Flask, render_template # Import necessary libraries
 # Create an instance of the Flask application
 app = Flask(__name__) # The __name__ variable tells Flask where to look for templates and static files
 
+
 # Create a route for the homapage
 @app.route('/') 
 # Function will run if user accesses the above root
