@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choose Your Style</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center/cover;
+      backdrop-filter: blur(3px);
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px 50px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      color: #00FFB3;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .choice-btn {
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.3s ease;
+      color: white;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .informal {
+      background-color: #00b36b; /* Green */
+    }
+
+    .formal {
+      background-color: #0066cc; /* Blue */
+    }
+
+    .choice-btn:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    @media (max-width: 500px) {
+      .button-group {
+        flex-direction: column;
+      }
+      .choice-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Choose Your Style</h1>
+    <div class="button-group">
+      <a href="EmployerInformalPost.html" class="choice-btn informal">Informal</a>
+      <a href="EmployerFormalPost.html" class="choice-btn formal">Formal</a>
+    </div>
+  </div>
+
+</body>
+</html>
