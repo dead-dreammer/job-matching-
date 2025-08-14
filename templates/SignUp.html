@@ -84,47 +84,42 @@
 <body>
   <div class="signup-container">
     <h2>Create Your JobMatcher Account</h2>
-    <form onsubmit="return validateForm()">
+    <form id="signupForm">
       <input type="text" id="fname" placeholder="First Name: " required />
       <input type="text" id="lname" placeholder="Last Name: " required />
       <input type="text" id="username" placeholder="Username: " required />
       <input type="email" id="email" placeholder="Email: " required />
       <input type="password" id="password" placeholder="Password: " required />
       <input type="password" id="confirmPassword" placeholder="Re-enter Password: " required />
-      <input type="text" id="hours" placeholder="Desired hours of work: " required />
-      <input type="text" id="salary" placeholder="Expected salary range: " required />
-      <input type="text" id="location" placeholder="Location: " required />
-      <textarea id="skills" placeholder="Skills and experience: " required></textarea>
-      <select id="jobType" required>
-        <option value="" disabled selected>Select Preferred Job Type</option>
-        <option value="Formal">Formal</option>
-        <option value="Informal">Informal</option>
-        <option value="Both">Both</option>
-      </select>
       <button type="submit">Submit</button>
     </form>
-    <a href="/login">
+    <a href="LoginPage.html">
       <button class="back-btn">Back to Login</button>
     </a>
   </div>
 
   <script>
-    function validateForm() {
+    const form = document.getElementById("signupForm");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirmPassword").value;
 
       if (password.length < 6) {
         alert("Password must be at least 6 characters long.");
-        return false;
+        return;
       }
 
       if (password !== confirmPassword) {
         alert("Passwords do not match.");
-        return false;
+        return;
       }
 
-      return true;
-    }
+      // If everything is valid, redirect
+      window.location.href = "Choice.html";
+    });
   </script>
 </body>
 </html>

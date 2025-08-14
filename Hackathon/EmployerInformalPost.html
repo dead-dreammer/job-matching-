@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Informal Job Posting</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2e3a59, #556ee6);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #f0f4ff;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 40px 50px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.25),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      letter-spacing: 1.2px;
+      position: relative;
+      user-select: none;
+    }
+
+    /* Underline accent */
+    h2::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #556ee6;
+      border-radius: 2px;
+      margin: 12px auto 0;
+      box-shadow: 0 0 8px #839aff88;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      user-select: none;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 400;
+      background: rgba(255, 255, 255, 0.15);
+      color: #f0f4ff;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      resize: vertical;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #d3d9ffcc;
+      font-style: italic;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 12px 3px #556ee6aa;
+      color: #222;
+    }
+
+    textarea {
+      min-height: 140px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #556ee6, #3747a8);
+      padding: 16px 0;
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      box-shadow: 0 8px 18px rgba(55, 71, 168, 0.6);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #3747a8, #556ee6);
+      box-shadow: 0 12px 24px rgba(55, 71, 168, 0.85);
+    }
+
+    /* Responsive */
+    @media (max-width: 560px) {
+      .form-container {
+        padding: 30px 25px;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container" role="main" aria-labelledby="formTitle">
+    <h2 id="formTitle">Post an Informal Job</h2>
+    <form id="informalJobForm" novalidate>
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" placeholder="e.g., Lawn Mowing" required />
+
+      <label for="days">Days Required</label>
+      <input type="number" id="days" name="days" min="1" max="365" placeholder="e.g., 3" required />
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" placeholder="Describe the job..." required></textarea>
+
+      <label for="location">Location</label>
+      <input type="text" id="location" name="location" placeholder="e.g., Johannesburg" required />
+
+      <button type="submit">Post Job</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('informalJobForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic validation done by HTML required attribute, you can add more here if needed
+
+      // Grab values
+      const jobData = {
+        title: form.title.value.trim(),
+        days: form.days.value,
+        description: form.description.value.trim(),
+        location: form.location.value.trim()
+      };
+
+      console.log('Job posted:', jobData);
+
+      alert('Your informal job has been posted!');
+
+      // Reset form
+      form.reset();
+    });
+  </script>
+</body>
+</html>

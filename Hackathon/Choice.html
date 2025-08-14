@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Choose Role</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat center center/cover;
+      color: white;
+    }
+
+    .container {
+      backdrop-filter: blur(15px);
+      background: rgba(0, 0, 0, 0.5);
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      max-width: 450px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: scale(1.02);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+      color: #00FFB3;
+      text-shadow: 1px 1px 10px black;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: white;
+      transition: background 0.4s ease, transform 0.2s ease;
+    }
+
+    .btn-employer {
+      background: linear-gradient(135deg, #00FFB3, #007A5E);
+    }
+    .btn-employer:hover {
+      background: linear-gradient(135deg, #00e3a5, #005f4a);
+      transform: scale(1.05);
+    }
+
+    .btn-employee {
+      background: linear-gradient(135deg, #4a90e2, #285b99);
+    }
+    .btn-employee:hover {
+      background: linear-gradient(135deg, #357abd, #1f4a77);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 2rem;
+      }
+      .button-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Select Your Role</h1>
+    <div class="button-group">
+      <button class="btn btn-employer" type="button" onclick="window.location.href='EmployerChoice.html'">Employer</button>
+      <button class="btn btn-employee" type="button" onclick="alert('Employee selected')">Employee</button>
+    </div>
+  </div>
+</body>
+</html>
