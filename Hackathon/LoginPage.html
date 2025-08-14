@@ -77,19 +77,47 @@
       background-color: white;
       color: black;
     }
+
+    /* Error message style */
+    .error-message {
+      color: #ff4d4d;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div class="overlay">
     <h1>Welcome to JobMatcher</h1>
-    <input type="text" placeholder="Username" />
-    <input type="password" placeholder="Password" />
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
     <div class="button-group">
-      <button class="btn">Sign In</button>
+      <button id="signInBtn" class="btn">Sign In</button>
       <a href="SignUp.html"> 
         <button class="btn-outline">Sign Up</button>
       </a>
     </div>
+    <p id="errorMsg" class="error-message">Please enter both username and password.</p>
   </div>
+
+  <script>
+    const usernameField = document.getElementById("username");
+    const passwordField = document.getElementById("password");
+    const signInBtn = document.getElementById("signInBtn");
+    const errorMsg = document.getElementById("errorMsg");
+
+    signInBtn.addEventListener("click", function() {
+      if (usernameField.value.trim() === "" || passwordField.value.trim() === "") {
+        errorMsg.style.display = "block";
+      } else {
+        errorMsg.style.display = "none";
+      }
+    });
+
+    // Hide error as soon as user starts typing
+    usernameField.addEventListener("input", () => errorMsg.style.display = "none");
+    passwordField.addEventListener("input", () => errorMsg.style.display = "none");
+  </script>
 </body>
 </html>
