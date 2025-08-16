@@ -1,21 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CV Generator Form</title>
+    <meta charset="UTF-8">
+    <title>Create CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h2>Simple CV Form</h2>
-    <form action="/generate_cv" method="POST">
-        <label>Full Name:</label>
-        <input type="text" name="full_name"><br><br>
+    <div class="container">
+        <h1>Create Your CV</h1>
+        <form method="POST">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
 
-        <label>Email:</label>
-        <input type="email" name="email"><br><br>
+            <label>Email Address</label>
+            <input type="email" name="email" required>
 
-        <label>Skills:</label>
-        <input type="text" name="skills" placeholder="e.g. Python, HTML, CSS"><br><br>
+            <label>Phone Number</label>
+            <input type="text" name="phone" required>
 
-        <button type="submit">Generate Dummy CV</button>
-    </form>
+            <label>Address</label>
+            <input type="text" name="address">
+
+            <label>Skills (comma separated)</label>
+            <input type="text" name="skills" placeholder="e.g. Python, HTML, CSS, Flask" required>
+
+            <label>Education</label>
+            <textarea name="education" placeholder="e.g. BSc Computer Science, XYZ University (2020)"></textarea>
+
+            <label>Experience</label>
+            <textarea name="experience" placeholder="e.g. Software Developer at ABC Corp (2021–Present)"></textarea>
+
+            <label>Projects</label>
+            <textarea name="projects" placeholder="e.g. Portfolio Website, E-commerce App"></textarea>
+
+            <label>Additional Info</label>
+            <textarea name="additional" placeholder="e.g. Languages, Certifications"></textarea>
+
+            <button type="submit">Generate PDF</button>
+        </form>
+    </div>
 </body>
 </html>
