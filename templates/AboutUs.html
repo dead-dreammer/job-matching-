@@ -1,70 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Us</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url("/static/images/OIP.webp");
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+{% extends "base.html" %}
 
-    .about-box {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      width: 90%;
-      max-width: 600px;
-      color: white;
-      text-align: center;
-    }
+{% block title %}About Us - JobMatcher{% endblock %}
 
-    .about-box h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .about-box p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #ddd;
-    }
-
-    .back-button {
-      margin-top: 30px;
-      display: inline-block;
-      padding: 12px 20px;
-      background-color: #2196F3;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .back-button:hover {
-      background-color: #1976D2;
-    }
-  </style>
-</head>
-<body>
-  <div class="about-box">
+{% block content %}
+<a href="/" class="back-button">← Back to Home</a>
+<div class="container" style="text-align: center;">
     <h1>About JobMatcher</h1>
     <p>
-      JobMatcher is a smart and simple web-based platform designed to help users discover their ideal career paths.<br><br>
-      By analyzing your personal preferences, such as your likes, dislikes, strengths, and weaknesses, our system recommends jobs that align with your unique personality and interests.<br><br>
-      Whether you're just starting out or looking for a career change, JobMatcher is here to guide you to the perfect fit.
+        JobMatcher is a smart and simple web-based platform designed to help users discover their ideal career paths.
+        <br><br>
+        By analyzing your personal preferences, such as your likes, dislikes, strengths, and weaknesses, our system recommends jobs that align with your unique personality and interests.
+        <br><br>
+        Whether you're just starting out or looking for a career change, JobMatcher is here to guide you to the perfect fit.
     </p>
-    <a href="/" class="back-button">← Back to Index</a>
-  </div>
-</body>
-</html>
+    <div style="margin-top: 2rem;">
+        <a href="/" class="button outline">← Back to Home</a>
+    </div>
+</div>
+{% endblock %}

@@ -3,110 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Job Matcher - Welcome</title>
+  <title>JobMatcher - Welcome</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url('/static/images/OIP2.jpg');
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f2c44, #3e5ba3);
+      min-height: 100vh;
       color: white;
-      flex-direction: column;
+      position: relative;
     }
 
     .navbar {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      z-index: 999;
-    }
-
-    .menu-icon {
-      font-size: 30px;
-      cursor: pointer;
-      user-select: none;
-      color: black; /* changed to black */
-    }
-
-    .dropdown {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
       right: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
     }
 
-    .dropdown a {
-      color: white;
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
       text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: background 0.3s;
-      white-space: nowrap;
     }
 
-    .dropdown a:hover {
-      background-color: #00FFB3;
-      color: black;
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link.primary {
+      background: #556ee6;
+    }
+
+    .nav-link.primary:hover {
+      background: #3747a8;
+    }
+
+    .main {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5rem 1rem;
     }
 
     .container {
-      backdrop-filter: blur(15px);
-      background: rgba(0, 0, 0, 0.5);
-      padding: 50px 40px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 3rem;
       border-radius: 20px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-      max-width: 650px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      width: 100%;
       text-align: center;
-      transition: transform 0.3s ease;
+      animation: fadeIn 0.5s ease-out;
     }
 
-    .container:hover {
-      transform: scale(1.02);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      letter-spacing: 3px;
-      color: #00FFB3;
-      text-shadow: 1px 1px 10px black;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      font-weight: 600;
+      line-height: 1.2;
     }
 
     p {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       line-height: 1.7;
-      margin-bottom: 40px;
-      color: #f1f1f1;
-      text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+      margin-bottom: 2rem;
+      color: rgba(255, 255, 255, 0.9);
     }
 
-    .apply-btn {
-      background: linear-gradient(135deg, #00FFB3, #007A5E);
-      border: none;
-      padding: 15px 35px;
-      font-size: 1.1rem;
+    .button {
+      display: inline-block;
+      background: #556ee6;
       color: white;
-      border-radius: 12px;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
       cursor: pointer;
       transition: background 0.4s ease;
     }
 
-    .apply-btn:hover {
-      background: linear-gradient(135deg, #00e3a5, #005f4a);
+    .button:hover {
+      background: #3747a8;
+      transform: translateY(-2px);
     }
 
-    @media (max-width: 600px) {
+    .button.outline {
+      background: transparent;
+      border: 2px solid #556ee6;
+    }
+
+    .button.outline:hover {
+      background: #556ee6;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 1rem;
+      }
+
+      .container {
+        padding: 2rem;
+      }
+
       h1 {
         font-size: 2rem;
       }
@@ -114,55 +165,57 @@
       p {
         font-size: 1rem;
       }
-
-      .apply-btn {
-        padding: 12px 25px;
-        font-size: 1rem;
-      }
-
-      .menu-icon {
-        font-size: 26px;
-      }
     }
   </style>
 </head>
 <body>
+  {% extends "base.html" %}
 
-  <!-- Hamburger Nav -->
-  <div class="navbar">
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <div class="dropdown" id="dropdownMenu">
-      <a href="/about">About Us</a>
-      <a href="/contact">Contact Us</a>
+{% block content %}
+  <main class="main">
+    <div class="container">
+      <h1>Find Your Perfect Career Match</h1>
+      <p>
+        Welcome to JobMatcher — your gateway to finding the perfect job based on your unique preferences.
+        Whether you're into office work, creative gigs, or something in-between, we match you with opportunities 
+        that fit your strengths.
+      </p>
+      <div class="button-group">
+        <a href="/choice" class="button">Get Started</a>
+      </div>
     </div>
-  </div>
+  </main>
+  {% endblock %}
 
-  <!-- Main Content -->
-  <div class="container">
-    <h1>Job Matcher</h1>
-    <p>
-      Welcome to <strong>Job Matcher</strong> — your gateway to finding the perfect job based on your unique preferences.<br />
-      Whether you're into office work, creative gigs, or something in-between, we match you with opportunities that fit your strengths.<br />
-      Sign up, let us get to know you, and unlock tailored job suggestions instantly!
-    </p>
-    <a href="/login">
-      <button class="apply-btn">Apply Now</button>
-    </a>
-  </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            console.log("Logout button clicked");
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+            try {
+                const res = await fetch("/auth/logout", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    console.log("Logout successful, reloading...");
+                    window.location.reload();
+                } else {
+                    console.warn("Logout failed:", data);
+                }
+            } catch (err) {
+                console.error("Logout fetch error:", err);
+            }
+        });
     }
+});
 
-    document.addEventListener("click", function (e) {
-      const menu = document.getElementById("dropdownMenu");
-      const icon = document.querySelector(".menu-icon");
-      if (!menu.contains(e.target) && !icon.contains(e.target)) {
-        menu.style.display = "none";
-      }
-    });
-  </script>
+</script>
+
 </body>
 </html>

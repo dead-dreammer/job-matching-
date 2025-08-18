@@ -1,15 +1,85 @@
-from flask import Flask, render_template # Import necessary libraries
+from flask import Flask, render_template
+from Database.auth import auth
+from Database.__init__ import db, create_database
+from Database.employer import employer
 
-# Create an instance of the Flask application
-app = Flask(__name__) # The __name__ variable tells Flask where to look for templates and static files
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'dalziel'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db.init_app(app)
+
+# Register blueprint
+app.register_blueprint(auth, url_prefix='/auth')
+app.register_blueprint(employer, url_prefix='/employer')
+
+# Create DB if not exists
+with app.app_context():
+    create_database(app)
+
+@app.after_request
+def add_header(response):
+    response.headers["Cache-Control"] = "no-store"
+    return response
 
 
-# Create a route for the homapage
 @app.route('/') 
-# Function will run if user accesses the above root
 def home():
-    # Renders the html file
-    return render_template('') # -- HTML FILE GOES HERE -- 
+    return render_template('Index.html')
+
+@app.route('/about')
+def about():
+    return render_template('AboutUs.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('Contact.html')
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    return render_template('LoginPage.html')
+
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+    return render_template('SignUp.html')
+
+
+# Employer routes
+@app.route('/choice')
+def choice():
+    return render_template('Choice.html')
+
+@app.route('/employer/choice')
+def employer_choice():
+    return render_template('EmployerChoice.html')
+
+@app.route('/employer/formal/post', methods=['GET', 'POST'])
+def employer_formal_post():
+    return render_template('EmployerFormalPost.html')
+
+@app.route('/employer/formal/display')
+def employer_formal_display():
+    return render_template('EmployerFormalDisplay.html')
+
+@app.route('/employer/informal/post', methods=['GET', 'POST'])
+def employer_informal_post():
+    return render_template('EmployerInformalPost.html')
+
+@app.route('/employer/informal/display')
+def employer_informal_display():
+    return render_template('EmployerInformalDisplay.html')
+
+# Employee routes
+@app.route('/employee/choice')
+def employee_choice():
+    return render_template('EmployeeChoice.html')
+
+@app.route('/employee/formal/browse')
+def employee_formal_browse():
+    return render_template('EmployerFormalDisplay.html' )
+
+@app.route('/employee/informal/browse')
+def employee_informal_browse():
+    return render_template('EmployerInformalDisplay.html')
 
 # Server will only run if this file is executed directly
 # Prevents the server from running if the file is imported into another module

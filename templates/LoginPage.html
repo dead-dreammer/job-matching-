@@ -1,123 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login Page</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c');
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+{% extends "base.html" %}
 
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      width: 90%;
-      max-width: 400px;
-      color: white;
-      text-align: center;
-    }
+{% block title %}Sign In - JobMatcher{% endblock %}
 
-    .overlay h1 {
-      margin-bottom: 25px;
-      font-size: 2rem;
-    }
-
-    .overlay input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    .button-group {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-
-    .btn,
-    .btn-outline {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .btn {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    .btn:hover {
-      background-color: #45a049;
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      border: 2px solid white;
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background-color: white;
-      color: black;
-    }
-
-    /* Error message style */
-    .error-message {
-      color: #ff4d4d;
-      font-size: 0.9rem;
-      margin-top: 10px;
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="overlay">
-    <h1>Welcome to JobMatcher</h1>
-    <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
-    <div class="button-group">
-      <button id="signInBtn" class="btn">Sign In</button>
-      <a href="SignUp.html"> 
-        <button class="btn-outline">Sign Up</button>
-      </a>
-    </div>
-    <p id="errorMsg" class="error-message">Please enter both username and password.</p>
+{% block content %}
+<div class="container">
+  <div class="form-container">
+    <h1 style="text-align: center;">Welcome Back</h1>
+    <form id="loginForm" class="form-container">
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" type="password" id="password" required />
+      </div>
+      <div class="form-group" style="margin-top: 2rem;">
+        <button type="submit" class="button" style="width: 100%;">Sign In</button>
+      </div>
+      <div style="display: flex; justify-content: center; margin-top: 1rem;">
+      <p>Create an account: </p>
+      <a href="/signup" style="margin-left: 20px;" class="nav-link" >Sign Up</a>
+      </div>
+    </form>
   </div>
+</div>
+{% endblock %}
 
-  <script>
-    const usernameField = document.getElementById("username");
-    const passwordField = document.getElementById("password");
-    const signInBtn = document.getElementById("signInBtn");
-    const errorMsg = document.getElementById("errorMsg");
+{% block scripts %}
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
 
-    signInBtn.addEventListener("click", function() {
-      if (usernameField.value.trim() === "" || passwordField.value.trim() === "") {
-        errorMsg.style.display = "block";
-      } else {
-        errorMsg.style.display = "none";
-      }
+  try {
+    const response = await fetch('/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email, password})
     });
+    const result = await response.json();
 
-    // Hide error as soon as user starts typing
-    usernameField.addEventListener("input", () => errorMsg.style.display = "none");
-    passwordField.addEventListener("input", () => errorMsg.style.display = "none");
-  </script>
-</body>
-</html>
+    if(response.ok){
+      alert(result.message);
+      window.location.href = '/';
+    } else {
+      alert(`Login failed: ${result.message}`);
+    }
+  } catch(err){
+    console.error(err);
+    alert("Network or server error. Check console for details.");
+  }
+});
+</script>
+{% endblock %}

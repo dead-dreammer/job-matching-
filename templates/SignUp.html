@@ -1,125 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign Up - JobMatcher</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d');
-      background-size: cover;
-      background-position: center;
-      font-family: 'Segoe UI', sans-serif;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+{% extends "base.html" %}
 
-    .signup-container {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      padding: 40px;
-      max-width: 550px;
-      width: 100%;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-      color: white;
-    }
+{% block title %}Sign Up - JobMatcher{% endblock %}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-
-    input, select, textarea {
-      padding: 12px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      resize: vertical;
-    }
-
-    textarea {
-      min-height: 80px;
-    }
-
-    button {
-      padding: 12px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 10px;
-      background-color: #4CAF50;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    .back-btn {
-      background-color: transparent;
-      border: 2px solid white;
-      color: white;
-      margin-top: 20px;
-    }
-
-    .back-btn:hover {
-      background-color: white;
-      color: black;
-    }
-  </style>
-</head>
-<body>
-  <div class="signup-container">
-    <h2>Create Your JobMatcher Account</h2>
-    <form id="signupForm">
-      <input type="text" id="fname" placeholder="First Name: " required />
-      <input type="text" id="lname" placeholder="Last Name: " required />
-      <input type="text" id="username" placeholder="Username: " required />
-      <input type="email" id="email" placeholder="Email: " required />
-      <input type="password" id="password" placeholder="Password: " required />
-      <input type="password" id="confirmPassword" placeholder="Re-enter Password: " required />
-      <button type="submit">Submit</button>
+{% block content %}
+<div class="container">
+  <div class="form-container">
+    <h1 style="text-align: center;">Create Your JobMatcher Account</h1>
+    <form id="signupForm" class="form-container">
+      <div class="form-group">
+        <label class="form-label" for="username">Username</label>
+        <input class="form-input" type="text" id="username" name="username" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" type="password" id="password" name="password" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="confirmPassword">Re-enter Password</label>
+        <input class="form-input" type="password" id="confirmPassword" name="confirmPassword" required />
+      </div>
+      <div class="form-group" style="margin-top: 2rem;">
+        <button type="submit" class="button" style="width: 100%;">Sign Up</button>
+      </div>
     </form>
-    <a href="LoginPage.html">
-      <button class="back-btn">Back to Login</button>
-    </a>
   </div>
+</div>
+{% endblock %}
 
-  <script>
-    const form = document.getElementById("signupForm");
+{% block scripts %}
+<script>
+document.getElementById('signupForm').addEventListener('submit', async function(e){
+  e.preventDefault();
 
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
+  const username = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const confirmPassword = document.getElementById('confirmPassword').value.trim();
 
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
+  if(password.length < 6){
+    alert("Password must be at least 6 characters long.");
+    return;
+  }
+  if(password !== confirmPassword){
+    alert("Passwords do not match.");
+    return;
+  }
 
-      if (password.length < 6) {
-        alert("Password must be at least 6 characters long.");
-        return;
-      }
-
-      if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
-      }
-
-      // If everything is valid, redirect
-      window.location.href = "Choice.html";
+  try {
+    const response = await fetch('/auth/sign-up', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({username, email, password})
     });
-  </script>
-</body>
-</html>
+    const result = await response.json();
+
+    if(response.ok){
+      alert(result.message);
+      window.location.href = '/';
+    } else {
+      alert(`Signup failed: ${result.message}`);
+    }
+  } catch(err){
+    console.error(err);
+    alert("Network or server error. Check console for details.");
+  }
+});
+</script>
+{% endblock %}

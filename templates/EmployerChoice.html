@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Options</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 80px 20px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #1f2c44, #3e5ba3);
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            color: #fff;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 20px;
+            padding: 8px 16px;
+            background: #556ee6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin-top: 20px;
+            
+        }
+
+        .back-button:hover {
+            background: #3747a8;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #fffbf7;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-card h2 {
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .option-card p {
+            color: #e0e0e0;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #556ee6;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .button:hover {
+            background: #3747a8;
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.primary {
+            background: #556ee6;
+        }
+
+        .nav-link.primary:hover {
+            background: #3747a8;
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .option-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">JobMatcher</a>
+        <div class="header">
+        
+        <h1>Post a Job</h1>
+    </div>
+        <div class="nav-links">
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            <a href="/login" class="nav-link primary">Sign In</a>
+        </div>
+    </nav>
+    <a href="/choice" class="back-button">← Back</a>
+    
+    <div class="container">
+        <div class="option-card">
+            <i class="fas fa-briefcase icon"></i>
+            <h2>Formal Jobs</h2>
+            <p>Post full-time positions, permanent roles, and professional career opportunities.</p>
+            <a href="/employer/formal/post" class="button">Post Formal Job</a>
+        </div>
+        
+        <div class="option-card">
+            <i class="fas fa-tasks icon"></i>
+            <h2>Informal Jobs</h2>
+            <p>Post part-time work, gigs, temporary positions, and flexible opportunities.</p>
+            <a href="/employer/informal/post" class="button">Post Informal Job</a>
+        </div>
+    </div>
+</body>
+</html>

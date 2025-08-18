@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informal Job Post</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 80px 20px 20px; /* added top padding for navbar space */
+    background: linear-gradient(135deg, #1f2c44, #3e5ba3);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* prevent vertical overlap */
+}
+
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: #556ee6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background: #3747a8;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin-top: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-family: inherit;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            background: #556ee6;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #3747a8;
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.primary {
+            background: #556ee6;
+        }
+
+        .nav-link.primary:hover {
+            background: #3747a8;
+        }
+
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">JobMatcher</a>
+        <h1>Post an Informal Job</h1>
+        <div class="nav-links">
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            <a href="/login" class="nav-link primary">Sign In</a>
+        </div>
+    </nav>
+    <a href="/employer/choice" class="back-button">← Back</a>
+    <div class="container">
+        
+        <form id="informalJobForm" action="/employer/informal/post" method="POST">
+            <div class="form-group">
+                <label for="jobTitle">Job Title</label>
+                <input type="text" id="jobTitle" required>
+            </div>
+
+            <div class="form-group">
+                <label for="field">Field</label>
+                <select id="field" required>
+                    <option value="">Select a field</option>
+                    <option value="Education">Education</option>
+                    <option value="Pet Care">Pet Care</option>
+                    <option value="Design">Design</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Administrative">Administrative</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="payRate">Hourly Pay Rate ($)</label>
+                <input type="number" id="payRate" min="0" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Job Description</label>
+                <textarea id="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="requirements">Requirements</label>
+                <textarea id="requirements" required></textarea>
+            </div>
+
+            <button type="submit">Post Job</button>
+        </form>
+    </div>
+
+    <script>
+document.getElementById("informalJobForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const jobData = {
+        title: document.getElementById("jobTitle").value,
+        field: document.getElementById("field").value,
+        payRate: document.getElementById("payRate").value,
+        location: document.getElementById("location").value,
+        description: document.getElementById("description").value,
+        requirements: document.getElementById("requirements").value,
+    };
+
+    try {
+        const response = await fetch("/employer/informal/post", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(jobData),
+        });
+
+        if (!response.ok) {
+            throw new Error("Server returned " + response.status);
+        }
+
+        const result = await response.json();
+        alert(result.message || "Job posted successfully!");
+    } catch (err) {
+        console.error("Error:", err);
+        alert("Something went wrong.");
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse Formal Jobs</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 80px 20px 20px; 
+    background: linear-gradient(135deg, #1f2c44, #3e5ba3);
+    min-height: 100vh;
+    color: #fff;
+    align-items: flex-start;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .back-button {
+    position: absolute;
+    padding: 8px 16px;
+    background: #556ee6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .back-button:hover {
+    background: #3747a8;
+  }
+
+  h1 {
+    text-align: center;
+    flex-grow: 1;
+    font-weight: 600;
+    color: #fffbf7;
+  }
+
+  .filter-bar {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    backdrop-filter: blur(8px);
+  }
+
+  .filter-bar label {
+    font-weight: bold;
+  }
+
+  .filter-bar input {
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    width: 120px;
+  }
+
+  .filter-bar button {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: none;
+    background: #556ee6;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .filter-bar button:hover {
+    background: #3747a8;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+  }
+
+  .job-card {
+    background: rgba(255,255,255,0.15);
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .job-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  }
+
+  .job-card h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+
+  .job-details {
+    display: none;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+
+  .job-card.expanded .job-details {
+    display: block;
+  }
+
+  .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.primary {
+            background: #556ee6;
+        }
+
+        .nav-link.primary:hover {
+            background: #3747a8;
+        }
+
+
+  @media (max-width: 1200px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 800px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<nav class="navbar">
+        <a href="/" class="navbar-brand">JobMatcher</a>
+        <div class="nav-links">
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            <a href="/login" class="nav-link primary">Sign In</a>
+        </div>
+    </nav>
+<div class="header">
+  <a href="/employee/choice" class="back-button">← Back</a>
+  <h1>Browse Formal Jobs</h1>
+</div>
+
+<div class="filter-bar">
+  <label for="filterField">Field:</label>
+  <input type="text" id="filterField" placeholder="Any">
+
+  <label for="filterSalaryMin">Salary Min:</label>
+  <input type="number" id="filterSalaryMin" placeholder="0">
+
+  <label for="filterSalaryMax">Salary Max:</label>
+  <input type="number" id="filterSalaryMax" placeholder="10000">
+
+  <label for="filterLocation">Location:</label>
+  <input type="text" id="filterLocation" placeholder="Any">
+
+  <button id="applyFilter">Apply</button>
+  <button id="clearFilter">Clear</button>
+</div>
+
+<div class="grid" id="jobGrid">
+  <!-- Job cards will appear here -->
+</div>
+
+<script>
+  const jobGrid = document.getElementById('jobGrid');
+
+  const filterField = document.getElementById('filterField');
+  const filterSalaryMin = document.getElementById('filterSalaryMin');
+  const filterSalaryMax = document.getElementById('filterSalaryMax');
+  const filterLocation = document.getElementById('filterLocation');
+
+  // Example formal jobs
+  let jobs = [
+    {
+      title: "Software Engineer",
+      field: "IT",
+      salary: 7000,
+      location: "New York",
+      description: "Develop and maintain web applications.",
+      requirements: "BSc in Computer Science, 2+ years experience."
+    },
+    {
+      title: "Financial Analyst",
+      field: "Finance",
+      salary: 6000,
+      location: "London",
+      description: "Analyze financial data and prepare reports.",
+      requirements: "BSc in Finance or Economics, CPA preferred."
+    },
+    {
+      title: "Project Manager",
+      field: "Management",
+      salary: 8000,
+      location: "Toronto",
+      description: "Lead projects from initiation to completion.",
+      requirements: "PMP certification, 3+ years experience."
+    },
+    {
+      title: "HR Specialist",
+      field: "Human Resources",
+      salary: 5000,
+      location: "Berlin",
+      description: "Handle recruitment and employee relations.",
+      requirements: "Degree in HR or related field."
+    },
+    {
+      title: "Marketing Coordinator",
+      field: "Marketing",
+      salary: 4500,
+      location: "San Francisco",
+      description: "Assist in marketing campaigns and social media.",
+      requirements: "BA in Marketing, 1+ years experience."
+    }
+  ];
+
+  function renderJobs(filters = {}) {
+    jobGrid.innerHTML = '';
+
+    let filteredJobs = jobs.filter(job => {
+      if (filters.field && filters.field.trim() !== '' &&
+          !job.field.toLowerCase().includes(filters.field.trim().toLowerCase())) return false;
+      if (filters.salaryMin != null && job.salary < filters.salaryMin) return false;
+      if (filters.salaryMax != null && job.salary > filters.salaryMax) return false;
+      if (filters.location && filters.location.trim() !== '' &&
+          !job.location.toLowerCase().includes(filters.location.trim().toLowerCase())) return false;
+
+      return true;
+    });
+
+    if (filteredJobs.length === 0) {
+      jobGrid.innerHTML = "<p style='color:#fff; grid-column: 1 / -1; text-align:center;'>No jobs found.</p>";
+      return;
+    }
+
+    filteredJobs.forEach(job => {
+      const card = document.createElement('div');
+      card.className = 'job-card';
+      card.innerHTML = `
+        <h3>${job.title}</h3>
+        <p><strong>Field:</strong> ${job.field}</p>
+        <p><strong>Salary:</strong> ${job.salary}</p>
+        <p><strong>Location:</strong> ${job.location}</p>
+        <div class="job-details">
+          <p><strong>Description:</strong> ${job.description}</p>
+          <p><strong>Requirements:</strong> ${job.requirements}</p>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        card.classList.toggle('expanded');
+      });
+      jobGrid.appendChild(card);
+    });
+  }
+
+  document.getElementById('applyFilter').addEventListener('click', () => {
+    renderJobs({
+      field: filterField.value || null,
+      salaryMin: parseInt(filterSalaryMin.value) || null,
+      salaryMax: parseInt(filterSalaryMax.value) || null,
+      location: filterLocation.value || null
+    });
+  });
+
+  document.getElementById('clearFilter').addEventListener('click', () => {
+    filterField.value = '';
+    filterSalaryMin.value = '';
+    filterSalaryMax.value = '';
+    filterLocation.value = '';
+    renderJobs();
+  });
+
+  renderJobs();
+</script>
+
+</body>
+</html>
