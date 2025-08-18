@@ -181,7 +181,13 @@
         that fit your strengths.
       </p>
       <div class="button-group">
+      {% if session.get('username') %}
+        <!-- If logged in, go to choice page -->
         <a href="/choice" class="button">Get Started</a>
+      {% else %}
+        <!-- If not logged in, go to login page -->
+        <a href="/login" class="button">Get Started</a>
+      {% endif %}
       </div>
     </div>
   </main>
