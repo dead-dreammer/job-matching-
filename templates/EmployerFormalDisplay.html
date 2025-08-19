@@ -1,4 +1,3 @@
-
 <title>Browse Formal Jobs</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -58,12 +57,29 @@
     font-weight: bold;
   }
 
-  .filter-bar input {
-    padding: 5px 10px;
-    border-radius: 6px;
+  .filter-bar input,
+  .filter-bar select {
+    padding: 8px 12px;
+    border-radius: 8px;
     border: none;
     outline: none;
-    width: 120px;
+    width: 150px;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+
+  .filter-bar input:focus,
+  .filter-bar select:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(85, 110, 230, 0.7);
+    color: #222;
+  }
+
+  .filter-bar option {
+    color: #000; /* dropdown options visible on dark bg */
   }
 
   .filter-bar button {
@@ -121,7 +137,6 @@
     display: block;
   }
 
-
   @media (max-width: 1200px) {
     .grid {
       grid-template-columns: repeat(3, 1fr);
@@ -151,7 +166,15 @@
 
 <div class="filter-bar">
   <label for="filterField">Field:</label>
-  <input type="text" id="filterField" placeholder="Any">
+  <select id="filterField">
+    <option value="">Any</option>
+    <option>Engineering</option>
+    <option>IT</option>
+    <option>Retail</option>
+    <option>Education</option>
+    <option>Finance</option>
+    <option>Healthcare</option>
+  </select>
 
   <label for="filterSalaryMin">Salary Min:</label>
   <input type="number" id="filterSalaryMin" placeholder="0">
@@ -160,7 +183,43 @@
   <input type="number" id="filterSalaryMax" placeholder="10000">
 
   <label for="filterLocation">Location:</label>
-  <input type="text" id="filterLocation" placeholder="Any">
+  <select id="filterLocation">
+    <option value="">Any</option>
+    <option>Pretoria</option>
+    <option>Durban</option>
+    <option>Cape Town</option>
+    <option>Port Elizabeth</option>
+    <option>Johannesburg</option>
+  </select>
+
+  <label for="filterTitle">Job Title:</label>
+  <select id="filterTitle">
+    <option value="">Any</option>
+    <option>Civil Engineer</option>
+    <option>System Administrator</option>
+    <option>Store Manager</option>
+    <option>Teacher</option>
+    <option>Principal</option>
+    <option>Financial Analyst</option>
+    <option>Medical Technician</option>
+    <option>Software Developer</option>
+    <option>Pharmacist</option>
+    <option>Nurse</option>
+    <option>Software Engineer</option>
+    <option>Cashier</option>
+    <option>Data Scientist</option>
+    <option>Cybersecurity Specialist</option>
+    <option>Mechanical Engineer</option>
+    <option>Tutor</option>
+    <option>Doctor</option>
+    <option>Auditor</option>
+    <option>Sales Associate</option>
+    <option>Merchandiser</option>
+    <option>Lecturer</option>
+    <option>Accountant</option>
+    <option>Investment Banker</option>
+    <option>Electrical Engineer</option>
+  </select>
 
   <button id="applyFilter">Apply</button>
   <button id="clearFilter">Clear</button>
@@ -173,68 +232,32 @@
 {% block scripts %}
 {{ super() }}
 <script>
-
   const jobGrid = document.getElementById('jobGrid');
 
   const filterField = document.getElementById('filterField');
   const filterSalaryMin = document.getElementById('filterSalaryMin');
   const filterSalaryMax = document.getElementById('filterSalaryMax');
   const filterLocation = document.getElementById('filterLocation');
+  const filterTitle = document.getElementById('filterTitle');
 
   // Example formal jobs
   let jobs = [
-    {
-      title: "Software Engineer",
-      field: "IT",
-      salary: 7000,
-      location: "New York",
-      description: "Develop and maintain web applications.",
-      requirements: "BSc in Computer Science, 2+ years experience."
-    },
-    {
-      title: "Financial Analyst",
-      field: "Finance",
-      salary: 6000,
-      location: "London",
-      description: "Analyze financial data and prepare reports.",
-      requirements: "BSc in Finance or Economics, CPA preferred."
-    },
-    {
-      title: "Project Manager",
-      field: "Management",
-      salary: 8000,
-      location: "Toronto",
-      description: "Lead projects from initiation to completion.",
-      requirements: "PMP certification, 3+ years experience."
-    },
-    {
-      title: "HR Specialist",
-      field: "Human Resources",
-      salary: 5000,
-      location: "Berlin",
-      description: "Handle recruitment and employee relations.",
-      requirements: "Degree in HR or related field."
-    },
-    {
-      title: "Marketing Coordinator",
-      field: "Marketing",
-      salary: 4500,
-      location: "San Francisco",
-      description: "Assist in marketing campaigns and social media.",
-      requirements: "BA in Marketing, 1+ years experience."
-    }
+    { title: "Software Engineer", field: "IT", salary: 7000, location: "Johannesburg", description: "Develop and maintain web applications.", requirements: "BSc in Computer Science, 2+ years experience." },
+    { title: "Financial Analyst", field: "Finance", salary: 6000, location: "Cape Town", description: "Analyze financial data and prepare reports.", requirements: "BSc in Finance or Economics, CPA preferred." },
+    { title: "Civil Engineer", field: "Engineering", salary: 7500, location: "Durban", description: "Manage civil engineering projects.", requirements: "Degree in Civil Engineering, ECSA registered." },
+    { title: "Nurse", field: "Healthcare", salary: 5000, location: "Pretoria", description: "Provide healthcare services to patients.", requirements: "Diploma in Nursing, registered nurse." },
+    { title: "Teacher", field: "Education", salary: 5500, location: "Port Elizabeth", description: "Teach students and prepare lessons.", requirements: "B.Ed degree, 2+ years teaching experience." }
   ];
 
   function renderJobs(filters = {}) {
     jobGrid.innerHTML = '';
 
     let filteredJobs = jobs.filter(job => {
-      if (filters.field && filters.field.trim() !== '' &&
-          !job.field.toLowerCase().includes(filters.field.trim().toLowerCase())) return false;
+      if (filters.field && filters.field !== job.field) return false;
+      if (filters.title && filters.title !== job.title) return false;
       if (filters.salaryMin != null && job.salary < filters.salaryMin) return false;
       if (filters.salaryMax != null && job.salary > filters.salaryMax) return false;
-      if (filters.location && filters.location.trim() !== '' &&
-          !job.location.toLowerCase().includes(filters.location.trim().toLowerCase())) return false;
+      if (filters.location && filters.location !== job.location) return false;
 
       return true;
     });
@@ -267,6 +290,7 @@
   document.getElementById('applyFilter').addEventListener('click', () => {
     renderJobs({
       field: filterField.value || null,
+      title: filterTitle.value || null,
       salaryMin: parseInt(filterSalaryMin.value) || null,
       salaryMax: parseInt(filterSalaryMax.value) || null,
       location: filterLocation.value || null
@@ -275,6 +299,7 @@
 
   document.getElementById('clearFilter').addEventListener('click', () => {
     filterField.value = '';
+    filterTitle.value = '';
     filterSalaryMin.value = '';
     filterSalaryMax.value = '';
     filterLocation.value = '';
@@ -284,7 +309,4 @@
   renderJobs();
 </script>
 {% endblock %}
-
-
 </body>
-

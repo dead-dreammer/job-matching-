@@ -47,45 +47,19 @@
   }
 </script>
 {% endblock %}
-    <input type="email" id="email" name="email" placeholder="you@example.com" required />
 
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" name="phone" placeholder="+27 00 000 0000" required />
+<style>
+  .main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 1rem;
+  }
 
-    <label for="message">Message</label>
-    <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
-
-    <button type="submit">Send Message</button>
-  </form>
-
-  <script>
-    function validateForm(event) {
-      event.preventDefault();
-
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const message = document.getElementById("message").value.trim();
-
-      if (!name || !email || !phone || !message) {
-        alert("Please fill out all fields.");
-        return false;
-      }
-
-      // You can replace this alert with AJAX for real message sending if needed.
-      alert("Your message has been sent! We'll get back to you shortly.");
-      document.querySelector(".contact-form").reset();
-      return true;
-    }
-  </script>
-  <style>
-    .main {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 5rem 1rem;
-    }
-  </style>
-</body>
-</html>
+  /* ✅ Added only this to change placeholder text color */
+  ::placeholder {
+    color: #444; /* dark gray, clearly visible */
+    opacity: 1;  /* ensures it doesn’t look faded */
+  }
+</style>
