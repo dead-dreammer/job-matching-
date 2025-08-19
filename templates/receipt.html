@@ -18,19 +18,37 @@
       background: linear-gradient(135deg, #1f2c44, #3e5ba3);
       min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       padding: 2rem;
+      color: #fff;
+    }
+
+    .back-button {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.95rem;
+      background: rgba(0,0,0,0.3);
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+      margin-bottom: 1.5rem; /* space between button and container */
+    }
+
+    .back-button:hover {
+      background: rgba(0,0,0,0.5);
     }
 
     .receipt {
-      background: #289fae;
+      background: rgba(255, 255, 255, 0.15);
       padding: 2rem;
       border-radius: 20px;
       width: 420px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
       animation: fadeIn 0.5s ease-out;
-      color: #f5faff;
+      color: #fff;
       position: relative;
     }
 
@@ -40,21 +58,19 @@
     }
 
     h2 {
-      color: #ffffff;
-      margin-bottom: 1.5rem;
-      font-weight: 600;
       text-align: center;
       font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
     }
 
     p {
       margin: 0.5rem 0;
       font-size: 0.95rem;
-      color: #eaf8f6;
     }
 
     strong {
-      color: #ffffff;
+      font-weight: 600;
     }
 
     .status {
@@ -66,47 +82,33 @@
       display: inline-block;
       margin-top: 1.2rem;
       padding: 0.75rem 1rem;
-      background: #007bff;
+      background: rgba(85, 110, 230, 0.8);
       color: white;
       text-align: center;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 0.95rem;
       font-weight: 500;
       width: 100%;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     .btn:hover {
-      background: #0056b3;
+      background: rgba(55, 71, 168, 0.9);
       transform: translateY(-2px);
-    }
-
-    /* Back button */
-    .back-button {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      text-decoration: none;
-      color: #fff;
-      font-size: 0.9rem;
-      background: rgba(0,0,0,0.3);
-      padding: 6px 12px;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-
-    .back-button:hover {
-      background: rgba(0,0,0,0.5);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     }
   </style>
   {% endblock extra_styles %}
 </head>
 <body>
   {% block content %}
+    <!-- Back button at top of page -->
+    <a href="javascript:history.back()" class="back-button">← Back</a>
+
     <div class="receipt">
-      <a href="javascript:history.back()" class="back-button">← Back</a>
       <h2>Receipt</h2>
       <p><strong>Transaction ID:</strong> {{ transaction.id }}</p>
       <p><strong>Employer:</strong> {{ transaction.employer_name }}</p>
