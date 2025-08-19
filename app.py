@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from Database.auth import auth
 from Database.__init__ import db, create_database
 from Database.employer import employer
+from Database.employee import employee
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dalziel'
@@ -11,6 +12,7 @@ db.init_app(app)
 # Register blueprint
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(employer, url_prefix='/employer')
+app.register_blueprint(employee, url_prefix='/employee')
 
 # Create DB if not exists
 with app.app_context():
@@ -80,6 +82,10 @@ def employee_formal_browse():
 @app.route('/employee/informal/browse')
 def employee_informal_browse():
     return render_template('EmployerInformalDisplay.html')
+
+@app.route('/employee/cv-gen', methods=['GET', 'POST'])
+def employee_cv_gen():
+    return render_template('form.html')
 
 # Server will only run if this file is executed directly
 # Prevents the server from running if the file is imported into another module

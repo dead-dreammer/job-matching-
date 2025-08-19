@@ -34,7 +34,7 @@ def informal_post():
 
 
 # Display informal jobs
-@employer.route('/informal/display')
-def informal_display():
-    jobs = InformalJob.query.all()
-    return render_template('EmployerInformalDisplay.html', jobs=jobs)
+@employer.route('/formal/post')
+def formal_post():
+   
+    return render_template('EmployerPost.html')
