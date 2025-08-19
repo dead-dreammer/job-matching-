@@ -24,8 +24,8 @@ class InformalJob(db.Model):
     location = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=False)
     requirements = db.Column(db.Text, nullable=False)
-    created_by = db.Column(db.Integer, db.ForeignKey('user.id'))  # Link to employer user
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_by = db.Column(db.Integer, db.ForeignKey('user.name'))  # Link to employer user
+
 
 
 class FormalJob(db.Model):
@@ -38,5 +38,7 @@ class FormalJob(db.Model):
     requirements = db.Column(db.Text)
     company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
     company = db.relationship('Company', backref='formal_jobs')
+    created_by = db.Column(db.Integer, db.ForeignKey('user.name'))  # Link to employer user
+    
 
 

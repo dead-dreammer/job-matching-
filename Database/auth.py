@@ -1,7 +1,9 @@
 from flask import Blueprint, request, jsonify, session
 from Database.models import User
+from Database.models import Company
 from Database.__init__ import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 auth = Blueprint('auth', __name__)
 
@@ -13,17 +15,21 @@ def sign_up():
     email = data.get('email')
     number = data.get('number')
     password = data.get('password')
-    dob = data.get('dob')
     gender = data.get('gender')
     company = data.get('companyName')
+    dob_str = data.get('dob')  
+    dob_obj = datetime.strptime(dob_str, '%Y-%m-%d').date()
 
     if User.query.filter_by(email=email).first():
         return jsonify({'message': 'Account already exists with that email address'}), 400
 
-    new_user = User(email=email, name=username, number=number, dob = dob, gender = gender,
+    new_user = User(email=email, name=username, number=number, dob = dob_obj, gender = gender,
                     password=generate_password_hash(password))
     if company:
-        new_user.company = company
+        new_company = Company(name = company)
+        db.session.add(new_company)
+        db.session.commit()
+
     db.session.add(new_user)
     db.session.commit()
 

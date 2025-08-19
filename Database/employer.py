@@ -23,7 +23,7 @@ def informal_post():
             location=data.get('location'),
             description=data.get('description'),
             requirements=data.get('requirements'),
-            created_by=session.get('user_id')
+            created_by=session.get('user_name')
         )
         db.session.add(new_job)
         db.session.commit()
@@ -46,7 +46,7 @@ def formal_post():
         location=data.get('location'),
         description=data.get('description'),
         requirements=data.get('requirements'),
-        created_by=session.get('user_id')
+        created_by=session.get('user_name')
     )
     db.session.add(new_job)
     db.session.commit()
