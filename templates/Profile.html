@@ -135,7 +135,7 @@
   <!-- Profile Card -->
   <div class="profile-container">
     <!-- Profile Picture -->
-    <img src="{{ session.get('profile_pic') }}" class="profile-pic" />
+    <img src="{{ url_for('static', filename='images/image.png') }}" alt="Profile Picture" class="profile-pic">
 
 {% if session.get('username') %}
 <!-- User Info -->

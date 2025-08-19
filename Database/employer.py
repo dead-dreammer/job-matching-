@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, session, render_template, redirect, url_for
 from Database.models import InformalJob
+from Database.models import FormalJob
 from Database.__init__ import db
 import datetime
 
@@ -32,28 +33,24 @@ def informal_post():
         return jsonify({'success': False, 'error': str(e)}), 500
 
 # Display formal job post page
-@employer.route('/formal/post')
+
+@employer.route('/formal/post', methods=['POST'])
 def formal_post():
-    if not session.get('user_id'):
-        return jsonify({'error': 'You must be logged in'}), 401
+    data = request.get_json()  # <--- this is key for JSON requests
+    if not data:
+        return jsonify({"error": "No JSON data received"}), 400
 
-    try:
-        data = request.get_json()
-        new_job = InformalJob(
-            title=data.get('title'),
-            salary=data.get('salary'),
-            location=data.get('location'),
-            description=data.get('description'),
-            requirements=data.get('requirements'),
-            created_by=session.get('user_id')
-        )
-        db.session.add(new_job)
-        db.session.commit()
-        return jsonify({'success': True, 'message': 'Job posted successfully'}), 200
-
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
-
+    new_job = FormalJob(
+        title=data.get('title'),
+        salary=data.get('salary'),
+        location=data.get('location'),
+        description=data.get('description'),
+        requirements=data.get('requirements'),
+        created_by=session.get('user_id')
+    )
+    db.session.add(new_job)
+    db.session.commit()
+    return jsonify({"success": True, "message": "Job posted successfully"})
 
 
 # ---------------------------

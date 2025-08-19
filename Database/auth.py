@@ -11,13 +11,19 @@ def sign_up():
     data = request.get_json()
     username = data.get('username')
     email = data.get('email')
+    number = data.get('number')
     password = data.get('password')
+    dob = data.get('dob')
+    gender = data.get('gender')
+    company = data.get('companyName')
 
     if User.query.filter_by(email=email).first():
         return jsonify({'message': 'Account already exists with that email address'}), 400
 
-    new_user = User(email=email, name=username,
+    new_user = User(email=email, name=username, number=number, dob = dob, gender = gender,
                     password=generate_password_hash(password))
+    if company:
+        new_user.company = company
     db.session.add(new_user)
     db.session.commit()
 
@@ -41,10 +47,8 @@ def login():
     session['user_id'] = user.id
     session['username'] = user.name
     session['email'] = user.email
-    session['is_employer'] = user.is_employer
-    session['is_employee'] = user.is_employee
-    session['is_admin'] = user.is_admin
-    
+
+
 
     return jsonify({'message': 'Login successful', 'username': user.name}), 200
 

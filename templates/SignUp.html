@@ -4,32 +4,66 @@
 
 {% block content %}
 <main class="main">
-<div class="container">
-  <div class="form-container">
+  <div class="container">
     <h2 style="text-align: center;">Create Your JobMatcher Account</h2>
-    <form id="signupForm" class="form-container">
-      <div class="form-group">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-input" type="text" id="username" name="username" required />
+
+    <!-- Single Form wrapping both columns -->
+    <form id="signupForm">
+      <div class="form-wrapper" style="display: flex; gap: 2rem; flex-wrap: wrap;">
+
+        <!-- Left Column -->
+        <div class="form-column" style="flex: 1; min-width: 300px;">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" class="form-input" placeholder="optional" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="number">Phone Number</label>
+            <input type="text" id="number" name="number" class="form-input" required />
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="form-column" style="flex: 1; min-width: 300px;">
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" class="form-input" required>
+              <option value="">--Select Gender--</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-input" required />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Re-enter Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required />
+          </div>
+         
+
       </div>
-      <div class="form-group">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-input" type="email" id="email" name="email" required />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-input" type="password" id="password" name="password" required />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="confirmPassword">Re-enter Password</label>
-        <input class="form-input" type="password" id="confirmPassword" name="confirmPassword" required />
-      </div>
-      <div class="form-group" style="margin-top: 2rem;">
-        <button type="submit" class="button" style="width: 100%;">Sign Up</button>
+      
+        </div>
+        <div class="form-group" style="margin-top: 2rem; text-align: center;">
+        <button type="submit" class="button" style="width: 50%; min-width: 200px;">Sign Up</button>
       </div>
     </form>
   </div>
-</div>
 </main>
 {% endblock %}
 
@@ -38,11 +72,25 @@
 document.getElementById('signupForm').addEventListener('submit', async function(e){
   e.preventDefault();
 
+  // Collect values
   const username = document.getElementById('username').value.trim();
+  const companyName = document.getElementById('companyName').value.trim();
   const email = document.getElementById('email').value.trim();
+  const number = document.getElementById('number').value.trim();
   const password = document.getElementById('password').value.trim();
   const confirmPassword = document.getElementById('confirmPassword').value.trim();
+  const dob = document.getElementById('dob').value.trim();
+  const gender = document.getElementById('gender').value;
 
+  // Validation
+  if(!username || !email || !number || !password || !confirmPassword || !dob || !gender){
+    alert("All required fields must be filled.");
+    return;
+  }
+  if(number.length != 10){
+    alert("Phone number must be 10 digits.");
+    return;
+  }
   if(password.length < 6){
     alert("Password must be at least 6 characters long.");
     return;
@@ -56,8 +104,9 @@ document.getElementById('signupForm').addEventListener('submit', async function(
     const response = await fetch('/auth/sign-up', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({username, email, password})
+      body: JSON.stringify({username, companyName, email, number, password, dob, gender})
     });
+
     const result = await response.json();
 
     if(response.ok){

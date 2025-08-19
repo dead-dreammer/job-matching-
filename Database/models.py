@@ -4,6 +4,9 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
     name = db.Column(db.String(150))
+    number = db.Column(db.String(15), nullable=True)  # Added phone number field
+    dob = db.Column(db.Date, nullable=True)  # Date of birth field
+    gender = db.Column(db.String(10), nullable=True)
     password = db.Column(db.String(200))
 
 class Company(db.Model):
@@ -28,8 +31,11 @@ class InformalJob(db.Model):
 class FormalJob(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
+    salary = db.Column(db.Float)
+    job_field = db.Column(db.String(100))
     description = db.Column(db.Text)
     location = db.Column(db.String(150))
+    requirements = db.Column(db.Text)
     company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
     company = db.relationship('Company', backref='formal_jobs')
 
