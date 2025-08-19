@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 40px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="{{ url_for('pay') }}">
+        <h2>Make a Payment</h2>
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <input type="text" name="employer_name" placeholder="Employer Name" required>
+        <input type="text" name="job_title" placeholder="Job Title" required>
+        <input type="number" name="amount" placeholder="Amount (Rands)" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="card_number" placeholder="Card Number" required>
+        <input type="text" name="expiry" placeholder="Expiry (MM/YY)" required>
+        <input type="text" name="cvv" placeholder="CVV" required>
+        
+        <button type="submit">Pay</button>
+    </form>
+</body>
+</html>
