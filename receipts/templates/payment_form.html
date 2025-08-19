@@ -1,64 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f9f9f9;
-            padding: 40px;
-        }
-        form {
-            background: white;
-            padding: 20px;
-            max-width: 400px;
-            margin: auto;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        input, button {
-            display: block;
-            width: 100%;
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #218838;
-        }
-        .error {
-            color: red;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f2c44, #3e5ba3);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      color: white;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      max-width: 700px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #556ee6;
+    }
+
+    .row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .row .form-group {
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 10px;
+      background: #556ee6;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    button:hover {
+      background: #3747a8;
+      transform: translateY(-2px);
+    }
+
+    .error {
+      color: #ff6b6b;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .row {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-    <form method="POST" action="{{ url_for('pay') }}">
-        <h2>Make a Payment</h2>
+  <form method="POST" action="{{ url_for('pay') }}">
+    <h2>Make a Payment</h2>
 
-        {% if error %}
-            <div class="error">{{ error }}</div>
-        {% endif %}
 
-        <input type="text" name="employer_name" placeholder="Employer Name" required>
-        <input type="text" name="job_title" placeholder="Job Title" required>
-        <input type="number" name="amount" placeholder="Amount (Rands)" required>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="text" name="card_number" placeholder="Card Number" required>
-        <input type="text" name="expiry" placeholder="Expiry (MM/YY)" required>
-        <input type="text" name="cvv" placeholder="CVV" required>
-        
-        <button type="submit">Pay</button>
-    </form>
+    <div class="form-group">
+      <label for="employer_name">Employer Name</label>
+      <input type="text" id="employer_name" name="employer_name" placeholder="Enter employer name" required>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="job_title">Job Title</label>
+        <input type="text" id="job_title" name="job_title" placeholder="Enter job title" required>
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount (Rands)</label>
+        <input type="number" id="amount" name="amount" placeholder="R 0.00" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="card_number">Card Number</label>
+      <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="expiry">Expiry (MM/YY)</label>
+        <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" placeholder="123" required>
+      </div>
+    </div>
+
+    <button type="submit">Pay</button>
+  </form>
 </body>
 </html>
