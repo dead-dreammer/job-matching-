@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -134,25 +133,7 @@
     {% extends "base.html" %}
 
 {% block content %}
-  <nav class="navbar">
-    <a href="/" class="navbar-brand">JobMatcher</a>
-    <div class="nav-links">
-        {% if session.get('username') %}
-            <span style="text-align:center; margin-right:20px; font-size:20px;">
-                Welcome, {{ session.get('username') }}!
-            </span>
-            <a href="/profile" class="nav-link">Profile</a>
-            <a href="/about" class="nav-link">About Us</a>
-            <a href="/contact" class="nav-link">Contact</a>
-            <a href="/" id="logoutBtn" class="nav-link primary">Logout</a>
-        {% else %}
-            <a href="/login" class="nav-link">Sign In</a>
-            <a href="/signup" class="nav-link primary">Sign Up</a>
-            <a href="/about" class="nav-link">About Us</a>
-            <a href="/contact" class="nav-link">Contact</a>
-        {% endif %}
-    </div>
-</nav>
+
   <div class="container">
     <h1>Select Your Role</h1>
     <div class="button-group">
@@ -162,29 +143,3 @@
   </div>
 {% endblock %}
 </body>
-{% block scripts %}
-<script>
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            fetch('/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Reload page to update nav bar
-                    window.location.href = '/';
-                }
-            })
-            .catch(err => console.error('Logout failed:', err));
-        });
-    }
-</script>
-{% endblock %}
-
-</html>

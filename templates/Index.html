@@ -92,6 +92,9 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    
+
+
     h1 {
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
@@ -181,7 +184,7 @@
         that fit your strengths.
       </p>
       <div class="button-group">
-      {% if session.get('username') %}
+        {% if session.get('username') %}
         <!-- If logged in, go to choice page -->
         <a href="/choice" class="button">Get Started</a>
       {% else %}

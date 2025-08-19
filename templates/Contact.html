@@ -3,6 +3,7 @@
 {% block title %}Contact Us - JobMatcher{% endblock %}
 
 {% block content %}
+<main class="main">
 <a href="/" class="back-button">← Back to Home</a>
 <div class="container">
   <form class="form-container" onsubmit="return validateForm(event)">
@@ -26,9 +27,11 @@
     <button type="submit" class="button">Send Message</button>
   </form>
 </div>
+</main>
 {% endblock %}
 
 {% block scripts %}
+{{ super() }}
 <script>
   function validateForm(event) {
     event.preventDefault();
@@ -75,5 +78,14 @@
       return true;
     }
   </script>
+  <style>
+    .main {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 5rem 1rem;
+    }
+  </style>
 </body>
 </html>

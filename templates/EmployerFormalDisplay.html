@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Browse Formal Jobs</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -125,52 +121,6 @@
     display: block;
   }
 
-  .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-link {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-link.primary {
-            background: #556ee6;
-        }
-
-        .nav-link.primary:hover {
-            background: #3747a8;
-        }
-
 
   @media (max-width: 1200px) {
     .grid {
@@ -192,14 +142,8 @@
 </style>
 </head>
 <body>
-<nav class="navbar">
-        <a href="/" class="navbar-brand">JobMatcher</a>
-        <div class="nav-links">
-            <a href="/about" class="nav-link">About Us</a>
-            <a href="/contact" class="nav-link">Contact</a>
-            <a href="/login" class="nav-link primary">Sign In</a>
-        </div>
-    </nav>
+ {% extends "base.html" %}
+ {% block content %}
 <div class="header">
   <a href="/employee/choice" class="back-button">← Back</a>
   <h1>Browse Formal Jobs</h1>
@@ -225,8 +169,11 @@
 <div class="grid" id="jobGrid">
   <!-- Job cards will appear here -->
 </div>
-
+{% endblock %}
+{% block scripts %}
+{{ super() }}
 <script>
+
   const jobGrid = document.getElementById('jobGrid');
 
   const filterField = document.getElementById('filterField');
@@ -336,6 +283,8 @@
 
   renderJobs();
 </script>
+{% endblock %}
+
 
 </body>
-</html>
+
