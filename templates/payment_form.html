@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    {% extends "base.html" %}
+    {% block extra_styles %}
+      <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f2c44, #3e5ba3);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      color: white;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      max-width: 700px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+      margin: 10px;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #556ee6;
+    }
+
+    .row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .row .form-group {
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 10px;
+      background: #556ee6;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    button:hover {
+      background: #3747a8;
+      transform: translateY(-2px);
+    }
+
+    .error {
+      color: #ff6b6b;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .row {
+        flex-direction: column;
+      }
+    }
+  </style>
+  {% endblock  extra_styles %}
+
+</head>
+<body>
+    {% block content %}
+     <a href="javascript:history.back()" class="back-button">← Back</a>
+
+    <form method="POST" action="{{ url_for('employer.pay') }}">
+        <h2>Make a Payment</h2>
+
+
+        <input type="text" name="employer_name" placeholder="Employer Name" required>
+        <input type="text" name="job_title" placeholder="Job Title" required>
+        <input type="number" name="amount" placeholder="Amount (Rands)" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="card_number" placeholder="Card Number" required>
+        <input type="text" name="expiry" placeholder="Expiry (MM/YY)" required>
+        <input type="text" name="cvv" placeholder="CVV" required>
+        
+        <button type="submit">Pay</button>
+    </form>
+     {% endblock %}
+</body>
+</html>
+

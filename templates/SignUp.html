@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - JobMatcher{% endblock %}
+
+{% block content %}
+<main class="main">
+<div class="container">
+  <div class="form-container">
+    <h2 style="text-align: center;">Create Your JobMatcher Account</h2>
+    <form id="signupForm" class="form-container">
+      <div class="form-group">
+        <label class="form-label" for="username">Username</label>
+        <input class="form-input" type="text" id="username" name="username" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" type="password" id="password" name="password" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="confirmPassword">Re-enter Password</label>
+        <input class="form-input" type="password" id="confirmPassword" name="confirmPassword" required />
+      </div>
+      <div class="form-group" style="margin-top: 2rem;">
+        <button type="submit" class="button" style="width: 100%;">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('signupForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+
+  const username = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+  if(password.length < 6){
+    alert("Password must be at least 6 characters long.");
+    return;
+  }
+  if(password !== confirmPassword){
+    alert("Passwords do not match.");
+    return;
+  }
+
+  try {
+    const response = await fetch('/auth/sign-up', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({username, email, password})
+    });
+    const result = await response.json();
+
+    if(response.ok){
+      alert(result.message);
+      window.location.href = '/';
+    } else {
+      alert(`Signup failed: ${result.message}`);
+    }
+  } catch(err){
+    console.error(err);
+    alert("Network or server error. Check console for details.");
+  }
+});
+</script>
+{% endblock %}

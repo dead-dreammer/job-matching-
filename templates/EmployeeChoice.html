@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Options</title>
+    {% block extra_styles %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: auto;
+            padding: 40px 20px  0px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #1f2c44, #3e5ba3);
+        }
+
+          .back-button {
+            position: absolute;
+            padding: 8px 16px;
+            background: #556ee6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+
+        }
+
+          .back-button:hover {
+            background: #3747a8;
+  }
+
+        .header {
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+        }
+
+        .employee-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .option-card h2 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .option-card p {
+            color: #e0e0e0;
+            margin-bottom: 1.5rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #556ee6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            width: 200px;
+            margin: 0.5rem auto;
+        }
+
+        .button:hover {
+            background: #3747a8;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+
+        @media (max-width: 768px) {
+            .employee-container {
+                flex-direction: column;
+            }
+
+            .option-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+  
+    </style>
+    {% endblock extra_styles %}
+ 
+</head>
+<body>
+
+    {% extends "base.html" %}
+    {% block content %}
+
+    <div class="header">
+        <a href="/choice" class="back-button">← Back</a>
+        <h1>Choose Your Job Type</h1>
+    </div>
+    
+    <div class="employee-container">
+        <div class="option-card">
+            <i class="fas fa-briefcase icon"></i>
+            <h2>Formal Jobs</h2>
+            <p>Browse full-time positions, permanent roles, and professional career opportunities.</p>
+            <a href="/employee/formal/browse" class="button">View Formal Jobs</a>
+        </div>
+        
+        <div class="option-card">
+            <i class="fas fa-tasks icon"></i>
+            <h2>Informal Jobs</h2>
+            <p>Find part-time work, gigs, temporary positions, and flexible opportunities.</p>
+            <a href="/employee/informal/browse" class="button">View Informal Jobs</a>
+        </div>
+        <div class="option-card">
+            <i class="fas fa-file-alt icon"></i>
+            <h2>CV Generator</h2>
+            <p>Create a professional CV to enhance your job applications.</p>
+            <a href="/employee/cv-gen" class="button">Generate CV</a>
+    </div>
+    {% endblock %}
+</body>
+</html>

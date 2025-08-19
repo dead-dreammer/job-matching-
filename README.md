@@ -2,11 +2,9 @@
 
 **JobMatch Connect** is an intelligent job matching platform that connects job seekers with opportunities based on their **field preferences**, **income expectations**, and **location**. It also features an **Informal Job Board**, where users can post and apply for **short-term or day jobs** like gardening, cleaning, deliveries, tutoring, etc.
 
----
-
 ## 🚀 Features
 
-### 🔍 Smart Job Matching
+### 🔍 Smart Job Matching 
 - Users fill out a profile including:
   - Preferred industries/fields
   - Skills and experience

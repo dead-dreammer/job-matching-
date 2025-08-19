@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Profile</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2e3a59, #556ee6);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px 20px 20px; /* space at top for nav */
+      color: #f0f4ff;
+    }
+
+    /* Back button like Informal Post */
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 8px 16px;
+      background: #556ee6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background: #3747a8;
+    }
+
+    .profile-container {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.25),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      margin-bottom: 20px;
+      border: 4px solid #556ee6;
+      box-shadow: 0 0 15px rgba(85, 110, 230, 0.7);
+    }
+
+    h2 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin: 10px 0 5px;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 25px;
+      text-align: left;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 12px 0;
+      font-size: 1rem;
+    }
+
+    .info-label {
+      font-weight: 600;
+    }
+
+    .edit-button {
+      margin-top: 25px;
+      background: linear-gradient(135deg, #556ee6, #3747a8);
+      padding: 12px 20px;
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 15px rgba(55, 71, 168, 0.6);
+    }
+
+    .edit-button:hover {
+      background: linear-gradient(135deg, #3747a8, #556ee6);
+      box-shadow: 0 10px 20px rgba(55, 71, 168, 0.85);
+    }
+
+    @media (max-width: 560px) {
+      .profile-container {
+        padding: 30px 20px;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Back button -->
+  <a href="javascript:history.back()" class="back-button">← Back</a>
+
+  <!-- Profile Card -->
+  <div class="profile-container">
+    <!-- Profile Picture -->
+    <img src="{{ session.get('profile_pic') }}" class="profile-pic" />
+
+{% if session.get('username') %}
+<!-- User Info -->
+<h2>{{ session.get('username') }}</h2>
+
+
+<!-- Info Card -->
+<div class="info-card">
+  <div class="info-row">
+    <span class="info-label">Email:</span>
+    <span>{{ session.get('email') }}</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Phone:</span>
+    <span>+27 65 123 4567</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Location:</span>
+    <span>Cape Town, South Africa</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Joined:</span>
+    <span>Jan 2024</span>
+  </div>
+</div>
+{% endif %}
+
+    <button class="edit-button">Edit Profile</button>
+  </div>
+</body>
+</html>
