@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Receipt</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  {% extends "base.html" %}
+  {% block extra_styles %}
   <style>
     * {
       margin: 0;
@@ -80,8 +82,11 @@
       transform: translateY(-2px);
     }
   </style>
+  {% endblock extra_styles %}
 </head>
 <body>
+    {% block content %}
+      <a href="javascript:history.back()" class="back-button">← Back</a>
     <div class="receipt">
         <h2>Receipt</h2>
         <p><strong>Transaction ID:</strong> {{ transaction.id }}</p>
@@ -93,11 +98,11 @@
         {% if transaction.status == "PAID_OUT" %}
             <p><strong>Released Date:</strong> {{ transaction.released_date }}</p>
         {% else %}
-            <form action="{{ url_for('release_funds', transaction_id=transaction.id) }}" method="POST">
+            <form action="{{ url_for('employer.release_funds', transaction_id=transaction.id) }}" method="POST">
                 <button type="submit" style="margin-top:10px; background:#007bff;">Release Funds</button>
             </form>
         {% endif %}
     </div>
-
+{% endblock content %}
 </body>
 </html>

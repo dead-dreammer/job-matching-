@@ -34,7 +34,26 @@ def informal_post():
 # Display formal job post page
 @employer.route('/formal/post')
 def formal_post():
-    return render_template('EmployerFormalPost.html')
+    if not session.get('user_id'):
+        return jsonify({'error': 'You must be logged in'}), 401
+
+    try:
+        data = request.get_json()
+        new_job = InformalJob(
+            title=data.get('title'),
+            salary=data.get('salary'),
+            location=data.get('location'),
+            description=data.get('description'),
+            requirements=data.get('requirements'),
+            created_by=session.get('user_id')
+        )
+        db.session.add(new_job)
+        db.session.commit()
+        return jsonify({'success': True, 'message': 'Job posted successfully'}), 200
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 
 
 # ---------------------------
