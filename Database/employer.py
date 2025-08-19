@@ -37,4 +37,4 @@ def informal_post():
 @employer.route('/formal/post')
 def formal_post():
    
-    return render_template('EmployerPost.html')
+    return render_template('EmployerFormalPost.html')

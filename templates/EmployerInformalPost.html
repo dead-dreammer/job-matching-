@@ -1,202 +1,224 @@
+<title>Informal Job Post</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-    <title>Informal Job Post</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-        body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 80px 20px 20px; /* added top padding for navbar space */
-    background: linear-gradient(135deg, #1f2c44, #3e5ba3);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center; /* prevent vertical overlap */
-}
-
-
-        .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 8px 16px;
-            background: #556ee6;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.3s;
-            margin-top: 20px;
-        }
-
-        .back-button:hover {
-            background: #3747a8;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-            margin-top: 10px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #fff;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        form {
-            display: grid;
-            gap: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        label {
-            color: #fff;
-            font-weight: 500;
-        }
-
-        input, textarea, select {
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            font-family: inherit;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        button {
-            background: #556ee6;
-            color: #fff;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #3747a8;
-        }
-
-        .error {
-            color: #ff6b6b;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-            }
-        }
-    </style>
-
-<body>
-  {% extends "base.html" %}
-    {% block content %}
-    <a href="/employer/choice" class="back-button">← Back</a>
-    <div class="container">
-        
-        <form id="informalJobForm" action="/employer/informal/post" method="POST">
-            <div class="form-group">
-                <label for="jobTitle">Job Title</label>
-                <input type="text" id="jobTitle" required>
-            </div>
-
-            <div class="form-group">
-                <label for="field">Field</label>
-                <select id="field" required>
-                    <option value="">Select a field</option>
-                    <option value="Education">Education</option>
-                    <option value="Pet Care">Pet Care</option>
-                    <option value="Design">Design</option>
-                    <option value="Transportation">Transportation</option>
-                    <option value="Administrative">Administrative</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="payRate">Hourly Pay Rate ($)</label>
-                <input type="number" id="payRate" min="0" step="0.01" required>
-            </div>
-
-            <div class="form-group">
-                <label for="location">Location</label>
-                <input type="text" id="location" required>
-            </div>
-
-            <div class="form-group">
-                <label for="description">Job Description</label>
-                <textarea id="description" required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="requirements">Requirements</label>
-                <textarea id="requirements" required></textarea>
-            </div>
-
-            <button type="submit">Post Job</button>
-        </form>
-    </div>
-    {% endblock %}
-    {% block scripts %}
-    {{ super() }}
-    <script>
-document.getElementById("informalJobForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const jobData = {
-        title: document.getElementById("jobTitle").value,
-        field: document.getElementById("field").value,
-        payRate: document.getElementById("payRate").value,
-        location: document.getElementById("location").value,
-        description: document.getElementById("description").value,
-        requirements: document.getElementById("requirements").value,
-    };
-
-    try {
-        const response = await fetch("/employer/informal/post", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(jobData),
-        });
-
-        if (!response.ok) {
-            throw new Error("Server returned " + response.status);
-        }
-
-        const result = await response.json();
-        alert(result.message || "Job posted successfully!");
-    } catch (err) {
-        console.error("Error:", err);
-        alert("Something went wrong.");
+    * {
+      box-sizing: border-box;
     }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2e3a59, #556ee6);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px 20px 20px;
+      color: #f0f4ff;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 8px 16px;
+      background: #556ee6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background: #3747a8;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 40px 50px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.25),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      letter-spacing: 1.2px;
+      position: relative;
+      user-select: none;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #556ee6;
+      border-radius: 2px;
+      margin: 12px auto 0;
+      box-shadow: 0 0 8px #839aff88;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      user-select: none;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 400;
+      background: rgba(255, 255, 255, 0.15);
+      color: #f0f4ff;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #d3d9ffcc;
+      font-style: italic;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 12px 3px #556ee6aa;
+      color: #222;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    button {
+      background: linear-gradient(135deg, #556ee6, #3747a8);
+      padding: 16px 0;
+      border: none;
+      border-radius: 14px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+      box-shadow: 0 8px 18px rgba(55, 71, 168, 0.6);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #3747a8, #556ee6);
+      box-shadow: 0 12px 24px rgba(55, 71, 168, 0.85);
+    }
+
+    @media (max-width: 560px) {
+      .form-container {
+        padding: 30px 25px;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+<a href="/employer/choice" class="back-button">← Back</a>
+<div class="form-container" role="main" aria-labelledby="formTitle">
+  <h2 id="formTitle">Post an Informal Job</h2>
+  <form id="informalJobForm" action="/employer/informal/post" method="POST">
+    <label for="jobTitle">Job Title</label>
+    <input type="text" id="jobTitle" name="title" placeholder="e.g., Babysitter" required />
+
+    <label for="field">Field</label>
+    <select id="field" name="field" required>
+      <option value="">Select a field</option>
+      <option value="Education">Education</option>
+      <option value="Pet Care">Pet Care</option>
+      <option value="Design">Design</option>
+      <option value="Transportation">Transportation</option>
+      <option value="Administrative">Administrative</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <label for="payRate">Hourly Pay Rate ($)</label>
+    <input type="number" id="payRate" name="payRate" min="0" step="0.01" placeholder="e.g., 15.50" required />
+
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" placeholder="e.g., Durban" required />
+
+    <label for="description">Job Description</label>
+    <textarea id="description" name="description" placeholder="Describe the job role..." required></textarea>
+
+    <label for="requirements">Requirements</label>
+    <textarea id="requirements" name="requirements" placeholder="List job requirements..." required></textarea>
+
+    <button type="submit">Post Job</button>
+  </form>
+</div>
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script>
+document.getElementById("informalJobForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const jobData = {
+    title: document.getElementById("jobTitle").value,
+    field: document.getElementById("field").value,
+    payRate: document.getElementById("payRate").value,
+    location: document.getElementById("location").value,
+    description: document.getElementById("description").value,
+    requirements: document.getElementById("requirements").value,
+  };
+
+  try {
+    const response = await fetch("/employer/informal/post", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(jobData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Server returned " + response.status);
+    }
+
+    const result = await response.json();
+    alert(result.message || "Job posted successfully!");
+  } catch (err) {
+    console.error("Error:", err);
+    alert("Something went wrong.");
+  }
 });
 </script>
 {% endblock %}
-    
-    
-
 </body>
-</html>
