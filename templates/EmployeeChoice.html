@@ -4,18 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Options</title>
+    {% block extra_styles %}
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: 0;
+            margin: auto;
             padding: 40px 20px  0px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             background: linear-gradient(135deg, #1f2c44, #3e5ba3);
         }
+
+          .back-button {
+            position: absolute;
+            padding: 8px 16px;
+            background: #556ee6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+
+        }
+
+          .back-button:hover {
+            background: #3747a8;
+  }
 
         .header {
             text-align: center;
@@ -94,16 +112,16 @@
         }
   
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {% endblock extra_styles %}
+ 
 </head>
 <body>
+
     {% extends "base.html" %}
     {% block content %}
 
-    {% block extra_nav %}
-    <a href="/employee/cv-gen"  class="nav-link ">CV-Gen</a>
-    {% endblock %}
     <div class="header">
+        <a href="/choice" class="back-button">← Back</a>
         <h1>Choose Your Job Type</h1>
     </div>
     
@@ -121,6 +139,11 @@
             <p>Find part-time work, gigs, temporary positions, and flexible opportunities.</p>
             <a href="/employee/informal/browse" class="button">View Informal Jobs</a>
         </div>
+        <div class="option-card">
+            <i class="fas fa-file-alt icon"></i>
+            <h2>CV Generator</h2>
+            <p>Create a professional CV to enhance your job applications.</p>
+            <a href="/employee/cv-gen" class="button">Generate CV</a>
     </div>
     {% endblock %}
 </body>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Formal Job Posting</title>
+  {% block extra_styles %}
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -46,8 +47,8 @@
       background: rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 40px 50px;
-      max-width: 520px;
-      width: 100%;
+      max-width: 1500px;
+      width: 90%;
       box-shadow:
         0 4px 30px rgba(0, 0, 0, 0.25),
         inset 0 0 10px rgba(255, 255, 255, 0.1);
@@ -80,6 +81,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      width: 100%;
     }
 
     label {
@@ -152,18 +154,21 @@
         font-size: 1.8rem;
       }
     }
+    .form-container {
+      margin-top: 20px;
+      padding: 40px 50px;
+      max-width: 800px;
+      width: 100%;
+    }
   </style>
+  {% endblock %}
 </head>
 <body>
 {% extends "base.html" %}
 
 {% block title %}Formal Job Posting{% endblock %}
 
-{% block extra_styles %}
-<style>
-  /* Your custom CSS here */
-</style>
-{% endblock %}
+
 
 {% block content %}
 <a href="/employer/choice" class="back-button">← Back</a>

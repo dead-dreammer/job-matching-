@@ -130,38 +130,37 @@
 </head>
 <body>
   <!-- Back button -->
-  <a href="/dashboard" class="back-button">← Back</a>
+  <a href="javascript:history.back()" class="back-button">← Back</a>
 
   <!-- Profile Card -->
   <div class="profile-container">
     <!-- Profile Picture -->
-    <img src="moon-profile.png" 
-         alt="Profile Picture" 
-         class="profile-pic" />
+    <img src="{{ session.get('profile_pic') }}" class="profile-pic" />
 
-    <!-- User Info -->
-    <h2>John Doe</h2>
-    <p>Software Engineer</p>
+{% if session.get('username') %}
+<!-- User Info -->
+<h2>{{ session.get('username') }}</h2>
 
-    <!-- Info Card -->
-    <div class="info-card">
-      <div class="info-row">
-        <span class="info-label">Email:</span>
-        <span>johndoe@example.com</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Phone:</span>
-        <span>+27 65 123 4567</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Location:</span>
-        <span>Cape Town, South Africa</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label">Joined:</span>
-        <span>Jan 2024</span>
-      </div>
-    </div>
+<!-- Info Card -->
+<div class="info-card">
+  <div class="info-row">
+    <span class="info-label">Email:</span>
+    <span>{{ session.get('email') }}</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Phone:</span>
+    <span>+27 65 123 4567</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Location:</span>
+    <span>Cape Town, South Africa</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Joined:</span>
+    <span>Jan 2024</span>
+  </div>
+</div>
+{% endif %}
 
     <!-- Action Button -->
     <button class="edit-button">Edit Profile</button>

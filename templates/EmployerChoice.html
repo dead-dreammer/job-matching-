@@ -136,6 +136,9 @@
 <body>
    {% extends "base.html" %}
     {% block content %}
+    {% block extra_nav %}
+        <a href="/employer/pay" class="nav-link">pay</a>
+    {% endblock %}
 
     <a href="/choice" class="back-button">← Back</a>
     

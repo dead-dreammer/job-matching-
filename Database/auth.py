@@ -40,6 +40,11 @@ def login():
 
     session['user_id'] = user.id
     session['username'] = user.name
+    session['email'] = user.email
+    session['is_employer'] = user.is_employer
+    session['is_employee'] = user.is_employee
+    session['is_admin'] = user.is_admin
+    
 
     return jsonify({'message': 'Login successful', 'username': user.name}), 200
 

@@ -28,6 +28,10 @@ def add_header(response):
 def home():
     return render_template('Index.html')
 
+@app.route('/profile')
+def profile():
+    return render_template('Profile.html')
+
 @app.route('/about')
 def about():
     return render_template('AboutUs.html')
@@ -53,6 +57,10 @@ def choice():
 @app.route('/employer/choice')
 def employer_choice():
     return render_template('EmployerChoice.html')
+
+@app.route('/employer/pay')
+def employer_pay():
+    return render_template('payment_form.html')
 
 @app.route('/employer/formal/post', methods=['GET', 'POST'])
 def employer_formal_post():

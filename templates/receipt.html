@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 50px; }
+        .receipt { background: #fff; padding: 20px; border-radius: 8px; width: 400px; margin: auto; }
+        h2 { color: #333; }
+        p { margin: 5px 0; }
+        .status { font-weight: bold; color: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <h2>Receipt</h2>
+        <p><strong>Transaction ID:</strong> {{ transaction.id }}</p>
+        <p><strong>Employer:</strong> {{ transaction.employer_name }}</p>
+        <p><strong>Job:</strong> {{ transaction.job_title }}</p>
+        <p><strong>Amount:</strong> ${{ transaction.amount }}</p>
+        <p><strong>Status:</strong> <span class="status">{{ transaction.status }}</span></p>
+        <p><strong>Date:</strong> {{ transaction.date }}</p>
+        {% if transaction.status == "PAID_OUT" %}
+            <p><strong>Released Date:</strong> {{ transaction.released_date }}</p>
+        {% else %}
+            <form action="{{ url_for('employer.release_funds', transaction_id=transaction.id) }}" method="POST">
+                <button type="submit" style="margin-top:10px; background:#007bff;">Release Funds</button>
+            </form>
+        {% endif %}
+    </div>
+
+</body>
+</html>
