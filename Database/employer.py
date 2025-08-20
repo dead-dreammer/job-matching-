@@ -1,8 +1,6 @@
-from flask import Blueprint, request, jsonify, session, render_template, redirect, url_for
-from Database.models import InformalJob
-from Database.models import FormalJob
+from flask import Blueprint, request, jsonify, session
+from Database.models import InformalJob, FormalJob, Company, User
 from Database.__init__ import db
-import datetime
 
 employer = Blueprint('employer', __name__)
 
@@ -11,11 +9,17 @@ employer = Blueprint('employer', __name__)
 # ---------------------------
 @employer.route('/informal/post', methods=['POST'])
 def informal_post():
-    if not session.get('user_id'):
+    # Ensure user is logged in
+    user_id = session.get('user_id')
+    if not user_id:
         return jsonify({'error': 'You must be logged in'}), 401
 
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "No JSON data received"}), 400
+
+    # Create Informal Job
     try:
-        data = request.get_json()
         new_job = InformalJob(
             title=data.get('title'),
             field=data.get('field'),
@@ -23,35 +27,59 @@ def informal_post():
             location=data.get('location'),
             description=data.get('description'),
             requirements=data.get('requirements'),
-            created_by=session.get('user_name')
+            created_by=user_id  # Link by user ID
         )
         db.session.add(new_job)
         db.session.commit()
-        return jsonify({'success': True, 'message': 'Job posted successfully'}), 200
-
+        return jsonify({'success': True, 'message': 'Informal job posted successfully'}), 201
     except Exception as e:
+        db.session.rollback()
         return jsonify({'success': False, 'error': str(e)}), 500
 
-# Display formal job post page
 
+# ---------------------------
+# Formal Job Posting
+# ---------------------------
 @employer.route('/formal/post', methods=['POST'])
 def formal_post():
-    data = request.get_json()  # <--- this is key for JSON requests
+    if not session.get('user_id'):
+        return jsonify({"error": "You must be logged in"}), 401
+
+    data = request.get_json()
     if not data:
         return jsonify({"error": "No JSON data received"}), 400
 
+    # Get user and company info from session
+    company_id = session.get('company_id')
+    user_id = session.get('user_id')
+    if not company_id:
+        return jsonify({"error": "You must be linked to a company to post a formal job"}), 400
+
+    # Validate required fields
+    required_fields = ['title', 'job_field', 'salary', 'location', 'description', 'requirements']
+    missing = [field for field in required_fields if not data.get(field)]
+    if missing:
+        return jsonify({"error": f"Missing fields: {', '.join(missing)}"}), 400
+
+    # Create and save job
     new_job = FormalJob(
         title=data.get('title'),
+        job_field=data.get('job_field'),
         salary=data.get('salary'),
         location=data.get('location'),
         description=data.get('description'),
         requirements=data.get('requirements'),
-        created_by=session.get('user_name')
+        company_id=company_id,
+        created_by=user_id
     )
-    db.session.add(new_job)
-    db.session.commit()
-    return jsonify({"success": True, "message": "Job posted successfully"})
 
+    try:
+        db.session.add(new_job)
+        db.session.commit()
+        return jsonify({"success": True, "message": "Job posted successfully"}), 200
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({"success": False, "error": str(e)}), 500
 
 # ---------------------------
 # Payment & Transactions
