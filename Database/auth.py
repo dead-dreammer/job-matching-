@@ -82,6 +82,16 @@ def login():
     session['user_id'] = user.id
     session['username'] = user.name
     session['email'] = user.email
+    session['number'] = user.number
+    from datetime import date
+ 
+    if user.dob:
+        today = date.today()
+        age = today.year - user.dob.year - ((today.month, today.day) < (user.dob.month, user.dob.day))
+        session['age'] = age
+    else:
+        session['age'] = None
+
     session['company_id'] = company.id if company else None
     session['company_name'] = company.name if company else None
 

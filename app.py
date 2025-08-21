@@ -20,6 +20,7 @@ with app.app_context():
 
 @app.after_request
 def add_header(response):
+
     response.headers["Cache-Control"] = "no-store"
     return response
 

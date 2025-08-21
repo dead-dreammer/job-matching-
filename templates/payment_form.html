@@ -144,5 +144,17 @@
     </form>
      {% endblock %}
 </body>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        if (valid) {
+            this.submit();
+             alert('Job posted successfully!');
+        } else {
+            alert('Please fill in all fields correctly.');
+        }
+    });
+  </script>
 </html>
 

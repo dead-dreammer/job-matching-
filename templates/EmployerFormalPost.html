@@ -25,23 +25,6 @@
       padding: 80px 20px 20px; 
     }
 
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 8px 16px;
-      background: #556ee6;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .back-button:hover {
-      background: #3747a8;
-    }
 
     .form-container {
       background: rgba(255, 255, 255, 0.12);
@@ -188,7 +171,7 @@
 {% block title %}Formal Job Posting{% endblock %}
 
 {% block content %}
-<a href="/employer/choice" class="back-button">← Back</a>
+ <a href="javascript:history.back()" class="back-button">← Back</a>
 <div class="form-container" role="main" aria-labelledby="formTitle">
   <h2 id="formTitle">Post a Formal Job</h2>
   <form id="formalJobForm" novalidate>
@@ -255,9 +238,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const result = await response.json();
       if (result.success) {
-        alert('Job posted successfully!');
+       
         form.reset();
-        window.location.href = '/employer/formal/display';
+        window.location.href = '/pay';
       } else {
         alert('Error: ' + (result.error || 'Unknown error'));
       }

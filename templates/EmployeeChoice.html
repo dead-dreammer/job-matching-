@@ -10,7 +10,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            margin: auto;
+      
             padding: 40px 20px  0px;
             min-height: 100vh;
             display: flex;
@@ -18,27 +18,13 @@
             background: linear-gradient(135deg, #1f2c44, #3e5ba3);
         }
 
-          .back-button {
-            position: absolute;
-            padding: 8px 16px;
-            background: #556ee6;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.3s;
-
-        }
-
-          .back-button:hover {
-            background: #3747a8;
-  }
+ 
 
         .header {
             text-align: center;
             color: #fff;
-            padding: 2rem;
+            margin-top: 40px;
+   
         }
 
         .employee-container {
@@ -121,7 +107,7 @@
     {% block content %}
 
     <div class="header">
-        <a href="/choice" class="back-button">← Back</a>
+       <a href="javascript:history.back()" class="back-button">← Back</a>
         <h1>Choose Your Job Type</h1>
     </div>
     

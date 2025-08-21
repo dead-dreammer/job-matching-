@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify, session
 from Database.models import InformalJob, FormalJob, Company, User
 from Database.__init__ import db
+import datetime
+from flask import render_template, redirect, url_for
 
 employer = Blueprint('employer', __name__)
 
@@ -164,3 +166,15 @@ def release_funds(transaction_id):
 @employer.route('/transactions')
 def all_transactions():
     return {"transactions": transactions}
+
+@employer.route('/view_jobs')
+def my_jobs():
+    user_id = session.get('user_id')
+    if not user_id:
+        return "You must be logged in", 401
+
+    # Fetch jobs created by the user
+    formal_jobs = FormalJob.query.filter_by(created_by=user_id).all()
+    informal_jobs = InformalJob.query.filter_by(created_by=user_id).all()
+
+    return render_template('view_jobs.html', formal_jobs=formal_jobs, informal_jobs=informal_jobs)

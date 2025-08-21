@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Create CV</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  {% extends "base.html" %}
+  {% block extra_styles %}
   <style>
         * {
             margin: 0;
@@ -111,8 +113,11 @@
             }
         }
   </style>
+  {% endblock extra_styles %}
 </head>
 <body>
+{% block content %}
+ <a href="javascript:history.back()" class="back-button">← Back</a>
     <div class="main">
       <div class="container">
         <h1>Create Your CV</h1>
@@ -166,5 +171,6 @@
         </form>
       </div>
     </div>
+{% endblock content %}
 </body>
 </html>

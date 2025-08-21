@@ -1,4 +1,6 @@
 <title>Informal Job Post</title>
+{% extends "base.html" %}
+{% block extra_styles %}
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -18,29 +20,12 @@
       color: #f0f4ff;
     }
 
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 8px 16px;
-      background: #556ee6;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .back-button:hover {
-      background: #3747a8;
-    }
 
     .form-container {
       background: rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 40px 50px;
-      max-width: 520px;
+      max-width: 700px;
       width: 100%;
       box-shadow:
         0 4px 30px rgba(0, 0, 0, 0.25),
@@ -148,9 +133,10 @@
       }
     }
   </style>
+  {% endblock %}
 </head>
 <body>
-{% extends "base.html" %}
+
 {% block content %}
 <a href="/employer/choice" class="back-button">← Back</a>
 <div class="form-container" role="main" aria-labelledby="formTitle">

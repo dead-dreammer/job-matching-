@@ -1,5 +1,4 @@
-from flask import Blueprint, request, jsonify, session, render_template, send_file
-from Database.models import InformalJob
+from flask import Blueprint, request, render_template, send_file
 from Database.models import FormalJob
 from Database.__init__ import db
 from weasyprint import HTML
@@ -9,136 +8,159 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
-from app import app  # Import your Flask app
+
 
 employee = Blueprint('employee', __name__)
 
-with app.app_context():
-    jobs_query = FormalJob.query.all()
+# Globals to hold job data and ML model
+jobs_query_global = []
+df_global = None
+model_global = None
+encoders = {}  # for label encoding categorical values
 
-data = []
-for job in jobs_query:
-    data.append({
+
+# 🔹 Match scoring helper
+def compute_match_score(row, preferred_field, expected_salary, preferred_location):
+    score = 0
+    if preferred_field and str(row["job_field"]).lower() == preferred_field.lower():
+        score += 1
+    if preferred_location and str(row["job_location"]).lower() == preferred_location.lower():
+        score += 1
+    if expected_salary and row["job_salary"] <= expected_salary:
+        score += 1
+    return score
+
+
+# 🔹 Train ML model on jobs
+def train_ml_model(df):
+    global encoders
+    df_encoded = df.copy()
+
+    # Encode categorical features
+    for col in ["job_field", "job_location", "job_title"]:
+        enc = LabelEncoder()
+        df_encoded[col] = enc.fit_transform(df_encoded[col])
+        encoders[col] = enc
+
+    X = df_encoded[["job_field", "job_location", "job_title", "job_salary"]]
+    y = df_encoded["job_salary"]  # predicting salary as a proxy for job ranking
+
+    # Split + train
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = RandomForestRegressor(n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+
+    return model
+
+
+@employee.route('/formal/browse', methods=['GET', 'POST'])
+def employee_formal_browse():
+    global jobs_query_global, df_global, model_global
+
+    # 🔹 Always load jobs fresh from DB
+    jobs_query_global = FormalJob.query.all()
+    if not jobs_query_global:
+        return render_template('EmployerFormalDisplay.html', jobs=[])
+
+    # Build DataFrame
+    df_global = pd.DataFrame([{
         "job_field": job.job_field,
         "job_location": job.location,
         "job_title": job.title,
-        "job_salary": job.salary
-    })
-df = pd.DataFrame(data)
+        "job_salary": job.salary,
+        "description": job.description,
+        "requirements": job.requirements
+    } for job in jobs_query_global])
 
-categorical_cols = ["job_field", "job_location", "job_title"]
-label_encoders = {}
-for col in categorical_cols:
-    le = LabelEncoder()
-    df[col] = le.fit_transform(df[col].astype(str))
-    label_encoders[col] = le
+    # 🔹 Train ML model once if not trained
+    if model_global is None and not df_global.empty:
+        model_global = train_ml_model(df_global)
 
-df["job_field_name"] = [job.job_field for job in jobs_query]
-df["job_location_name"] = [job.location for job in jobs_query]
-df["job_title_name"] = [job.title for job in jobs_query]
+    jobs_list = []
 
-def compute_match_score(row, user_field, user_salary, user_location):
-    score = 0
-    if row["job_field_name"].lower() == user_field.lower():
-        score += 40
-    if row["job_location_name"].lower() == user_location.lower():
-        score += 30
-    salary_diff = abs(user_salary - row["job_salary"]) / user_salary
-    if salary_diff < 0.1:
-        score += 20
-    elif salary_diff < 0.2:
-        score += 10
-    if user_field.lower() in row["job_title_name"].lower():
-        score += 10
-    return score
+    # ------------------ Case 1: Filters applied (POST) ------------------
+    if request.method == "POST":
+        preferred_field = request.form.get("job_field")
+        salary_val = request.form.get("salary")
+        expected_salary = int(salary_val) if salary_val else None
+        preferred_location = request.form.get("location")
 
-df["match_score"] = df.apply(lambda row: compute_match_score(row, "Finance", 20000, "Durban"), axis=1)
+        for idx, row in df_global.iterrows():
+            # Rule-based score
+            rule_score = compute_match_score(row, preferred_field, expected_salary, preferred_location)
 
-X = df[["job_field", "job_location", "job_title", "job_salary"]]
-y = df["match_score"]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+            # ML score
+            ml_score = 0
+            if model_global is not None:
+                features = pd.DataFrame([[row["job_field"], row["job_location"], row["job_title"], row["job_salary"]]],
+                                        columns=["job_field", "job_location", "job_title", "job_salary"])
 
-model = RandomForestRegressor(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
+                # Encode categorical features before prediction
+                for col in ["job_field", "job_location", "job_title"]:
+                    if col in encoders:
+                        features[col] = encoders[col].transform(features[col])
 
-print(f"R²: {r2_score(y_test, model.predict(X_test)):.4f}, RMSE: {np.sqrt(mean_squared_error(y_test, model.predict(X_test))):.2f}")
+                ml_score = model_global.predict(features)[0]
 
+            final_score = 0.6 * ml_score + 0.4 * rule_score
+
+            jobs_list.append({
+                "job_field": row["job_field"],
+                "title": row["job_title"],
+                "salary": row["job_salary"],
+                "location": row["job_location"],
+                "description": row["description"],
+                "requirements": row["requirements"],
+                "rule_score": rule_score,
+                "ml_score": ml_score,
+                "final_score": final_score
+            })
+
+        # ✅ Apply filters only when user selects
+        if preferred_field:
+            jobs_list = [job for job in jobs_list if job["job_field"].lower() == preferred_field.lower()]
+        if preferred_location:
+            jobs_list = [job for job in jobs_list if job["location"].lower() == preferred_location.lower()]
+
+        # Sort by salary + ML score
+        jobs_list.sort(key=lambda x: (x["salary"], x["final_score"]), reverse=True)
+
+    # ------------------ Case 2: No filters (GET) ------------------
+    else:
+        for idx, row in df_global.iterrows():
+            jobs_list.append({
+                "job_field": row["job_field"],
+                "title": row["job_title"],
+                "salary": row["job_salary"],
+                "location": row["job_location"],
+                "description": row["description"],
+                "requirements": row["requirements"]
+            })
+
+    return render_template('EmployerFormalDisplay.html', jobs=jobs_list)
+
+
+# 🔹 CV Generator
 @employee.route('/cv-gen', methods=['GET', 'POST'])
 def cv_gen():
     if request.method == 'POST':
-        from weasyprint import HTML  # lazy import only when needed
         name = request.form.get('name')
         email = request.form.get('email')
         phone = request.form.get('phone')
         skills = request.form.get('skills').split(',')
         experience = request.form.get('experience')
 
-        rendered_html = render_template('cv_template.html',
-                                        name=name,
-                                        email=email,
-                                        phone=phone,
-                                        skills=skills,
-                                        experience=experience)
+        rendered_html = render_template(
+            'cv_template.html',
+            name=name,
+            email=email,
+            phone=phone,
+            skills=skills,
+            experience=experience
+        )
 
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as pdf_file:
             HTML(string=rendered_html).write_pdf(pdf_file.name)
             return send_file(pdf_file.name, as_attachment=True, download_name=f"{name}_CV.pdf")
 
     return render_template('form.html')
-
-
-@employee.route('/formal/browse')
-def employee_formal_browse():
-    jobs_list = []
-
-    if request.method == "POST":
-        preferred_field = request.form.get("field")
-        expected_salary = int(request.form.get("salary"))
-        preferred_location = request.form.get("location")
-
-        for idx, row in df.iterrows():
-            # Rule-based
-            rule_score = compute_match_score(row, preferred_field, expected_salary, preferred_location)
-
-            # ML prediction
-            features = pd.DataFrame([[row["job_field"], row["job_location"], row["job_title"], row["job_salary"]]],
-                                    columns=["job_field", "job_location", "job_title", "job_salary"])
-            ml_score = model.predict(features)[0]
-
-            final_score = 0.6 * ml_score + 0.4 * rule_score
-
-            jobs_list.append({
-                "field": row["job_field_name"],
-                "title": row["job_title_name"],
-                "salary": row["job_salary"],
-                "location": row["job_location_name"],
-                "description": getattr(jobs_query[idx], "description", ""),
-                "requirements": getattr(jobs_query[idx], "requirements", ""),
-                "rule_score": rule_score,
-                "ml_score": ml_score,
-                "final_score": final_score
-            })
-
-        # Filter jobs for user's field & location
-        jobs_list = [job for job in jobs_list
-                     if job["field"].lower() == preferred_field.lower()
-                     and job["location"].lower() == preferred_location.lower()]
-
-        # Sort by salary and final_score
-        jobs_list.sort(key=lambda x: (x["salary"], x["final_score"]), reverse=True)
-
-    else:
-        # GET request: show all jobs
-        for idx, row in df.iterrows():
-            jobs_list.append({
-                "field": row["job_field_name"],
-                "title": row["job_title_name"],
-                "salary": row["job_salary"],
-                "location": row["job_location_name"],
-                "description": getattr(jobs_query[idx], "description", ""),
-                "requirements": getattr(jobs_query[idx], "requirements", ""),
-            })
-
-    return render_template('EmployerFormalDisplay.html', jobs=jobs_list)
-

@@ -19,6 +19,7 @@
             min-height: 100vh;
             color: white;
             position: relative;
+            padding-top: 80px;
         }
 
         .navbar {
@@ -27,14 +28,15 @@
             left: 0;
             right: 0;
             padding: 1rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+             backdrop-filter: blur(10px);  
             display: grid;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             height: 80px;
-                grid-template-columns: 1fr auto 1fr;
+            grid-template-columns: 1fr auto 1fr;
+           
         }
 
         .navbar-brand {
@@ -43,9 +45,9 @@
             color: #fff;
             text-decoration: none;
             position: absolute;
-    left: 50%;
-       top: 50%;                  /* ✅ align vertically */
-    transform: translate(-50%, -50%); 
+             left: 50%;
+              top: 50%;                  /* ✅ align vertically */
+        transform: translate(-50%, -50%); 
         }
 
         .nav-links {
@@ -54,14 +56,13 @@
         }
 
         .nav-link {
-            color: #fff;
+             color: #00FFB3;
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 8px;
             transition: all 0.3s ease;
             font-size: 20px;
-            margin-right: 20px;
-            margin-left: 20px;
+           
             
         }
 
@@ -95,11 +96,11 @@
     gap: 1rem;
 }
         .main {
-            min-height: 100vh;
+     
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 5rem 1rem;
+           
         }
 
         .container {
@@ -108,9 +109,10 @@
             padding: 3rem;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            max-width: 1500px;
+            max-width: 1000px;
             width: 90%;
             animation: fadeIn 0.5s ease-out;
+            margin-top: 20px;
         }
 
         @keyframes fadeIn {
@@ -119,7 +121,8 @@
         }
 
         .form-container {
-            max-width: 400px;
+            margin-top: 20px;
+            max-width: 300px;
             margin: 0 auto;
         }
 
@@ -146,6 +149,7 @@
             transition: all 0.3s ease;
             z-index: 100;
             backdrop-filter: blur(10px);
+            margin-top: 20px;
         }
 
         .back-button:hover {
@@ -178,7 +182,7 @@
         .button {
             display: inline-block;
             background: #556ee6;
-            color: white;
+            color: white !important;
             text-decoration: none;
             padding: 1rem 2rem;
             border-radius: 8px;
@@ -230,6 +234,86 @@
     transform: scale(1.3); /* makes it 10% bigger */
 }
 
+/* Fixed, glassy footer */
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.25);
+  color: #00FFB3;
+ 
+  font-family: 'Poppins', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.footer-left, .footer-center, .footer-right {
+  flex: 1;
+  min-width: 150px;
+}
+
+.footer-left h3 {
+  margin-bottom: 5px;
+}
+
+.footer-center ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
+}
+
+.footer-center ul li a {
+  color: #00FFB3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-center ul li a:hover {
+  color: #556ee6;
+}
+
+.footer-right .social-icons a {
+  color: #00FFB3;
+  margin-right: 10px;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.footer-right .social-icons a:hover {
+  transform: scale(1.2);
+  color: #556ee6;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+
 
         @media (max-width: 768px) {
             .navbar {
@@ -254,6 +338,7 @@
 
             .container {
                 padding: 2rem;
+                margin-top: 20px;
             }
 
             h1 {
@@ -284,6 +369,7 @@
   <div class="navbar-center">
     <a href="/" class="navbar-brand">
       <img src="{{ url_for('static', filename='images/Jinger_logo.png') }}" class="logo-img" >
+   
     </a>
   </div>
 
@@ -311,6 +397,19 @@
     {% block scripts %}
 <script src="static/js/logout.js"></script>
 {% endblock %}
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <h3>JobMatcher</h3>
+      <p>Connecting talent with opportunities.</p>
+    </div>
+
+
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; {{ current_year }} JobMatcher. All rights reserved.</p>
+  </div>
+</footer>
 
 </body>
 

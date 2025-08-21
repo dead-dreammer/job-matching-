@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>User Profile</title>
+  {% extends "base.html" %}
+  {% block extra_styles %}
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -14,58 +16,35 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #2e3a59, #556ee6);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       padding: 80px 20px 20px; /* space at top for nav */
-      color: #f0f4ff;
+       color: #00FFB3;
     }
 
-    /* Back button like Informal Post */
-    .back-button {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 8px 16px;
-      background: #556ee6;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
 
-    .back-button:hover {
-      background: #3747a8;
-    }
 
     .profile-container {
-      background: rgba(255, 255, 255, 0.12);
+    
       border-radius: 20px;
       padding: 40px 30px;
       max-width: 520px;
       width: 100%;
       box-shadow:
-        0 4px 30px rgba(0, 0, 0, 0.25),
-        inset 0 0 10px rgba(255, 255, 255, 0.1);
+        0 4px 30px rgb(0, 255, 179),
+
+        inset 0 0 10px rgb(0, 255, 179);
+;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       text-align: center;
+       color: #00FFB3;
+       margin-top: 20px;
     }
 
-    .profile-pic {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      aspect-ratio: 1 / 1;
-      margin-bottom: 20px;
-      border: 4px solid #556ee6;
-      box-shadow: 0 0 15px rgba(85, 110, 230, 0.7);
-    }
+
 
     h2 {
       font-weight: 600;
@@ -79,13 +58,30 @@
       opacity: 0.9;
     }
 
+    .profile-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;          /* circle shape */
+  background: linear-gradient(135deg, #556ee6, #00ffb3);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;   /* makes initials uppercase */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  user-select: none;
+}
+
     .info-card {
       background: rgba(255, 255, 255, 0.08);
       border-radius: 15px;
       padding: 20px;
       margin-top: 25px;
       text-align: left;
-      box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+      box-shadow: inset 0 0 8px rgb(0, 255, 179)
+;
     }
 
     .info-row {
@@ -127,15 +123,23 @@
       }
     }
   </style>
+  {% endblock extra_styles %}
 </head>
 <body>
+  {% block content %}
   <!-- Back button -->
   <a href="javascript:history.back()" class="back-button">← Back</a>
 
   <!-- Profile Card -->
   <div class="profile-container">
     <!-- Profile Picture -->
-    <img src="{{ url_for('static', filename='images/image.png') }}" alt="Profile Picture" class="profile-pic">
+    <div class="profile-logo">
+      {% if session.get('username') %}
+        {{ session.get('username')[0] }}
+      {% else %}
+        U
+      {% endif %}
+    </div>
 
 {% if session.get('username') %}
 <!-- User Info -->
@@ -150,20 +154,25 @@
   </div>
   <div class="info-row">
     <span class="info-label">Phone:</span>
-    <span>+27 65 123 4567</span>
+    <span>{{ session.get('number') }}</span>
   </div>
   <div class="info-row">
     <span class="info-label">Location:</span>
     <span>Cape Town, South Africa</span>
   </div>
   <div class="info-row">
-    <span class="info-label">Joined:</span>
-    <span>Jan 2024</span>
+    <span class="info-label">Age:</span>
+    <span>{{ session.get('age') }} years old</span>
+  </div>
+  <div class="info-row">
+    <span class="info-label">Company:</span>
+    <span>{{ session.get('company_name') }}</span>
   </div>
 </div>
 {% endif %}
 
-    <button class="edit-button">Edit Profile</button>
+    <a href="/employer/view_jobs" class="edit-button">View Jobs Created</a>
   </div>
+  {% endblock content %}
 </body>
 </html>
