@@ -1,11 +1,13 @@
+
+
 {% extends "base.html" %}
 
 {% block title %}Contact Us - JobMatcher{% endblock %}
 
 {% block content %}
-<main class="main">
+
 <a href="/" class="back-button">← Back to Home</a>
-<div class="container">
+
   <form class="form-container" onsubmit="return validateForm(event)">
     <h1>Contact Us</h1>
 
@@ -26,8 +28,7 @@
 
     <button type="submit" class="button">Send Message</button>
   </form>
-</div>
-</main>
+
 {% endblock %}
 
 {% block scripts %}
@@ -48,19 +49,25 @@
 </script>
 {% endblock %}
 
-<style>
-  .main {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5rem 1rem;
-  }
 
-  /* ✅ Added only this to change placeholder text color */
-  ::placeholder {
-    color: white; /* dark gray, clearly visible */
-    opacity: 1;  /* ensures it doesn’t look faded */
-  }
+<style>
+.contact-container {
+  background-color: #333;
+  border-radius: 12px;
+  max-width: 350px;   /* ✅ smaller width */
+  width: 100%;        /* scales on small screens */
+  margin: 20px auto;  /* keeps it centered */
+  padding: 2rem;      /* add breathing space */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.form-container {
+  width: 50%;  /* ✅ prevent extra stretching */
+}
+
+.form-input, textarea {
+  width: 100%;  /* ✅ input matches container width */
+  resize: none; /* stops textarea from dragging too wide */
+}
 
 </style>

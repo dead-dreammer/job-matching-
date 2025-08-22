@@ -287,7 +287,7 @@
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
+
 <script>
 const jobGrid = document.getElementById('jobGrid');
 const pagination = document.getElementById('pagination');
@@ -397,6 +397,7 @@ document.getElementById('clearFilter').addEventListener('click', () => {
 // Initial render
 renderJobs({}, 1);
 </script>
+
 {% endblock %}
 </body>
 </html>

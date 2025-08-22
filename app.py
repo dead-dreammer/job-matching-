@@ -9,7 +9,7 @@ from flask import session
 
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static")
 app.config['SECRET_KEY'] = 'dalziel'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db.init_app(app)

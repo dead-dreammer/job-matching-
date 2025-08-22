@@ -44,7 +44,7 @@
           <p><strong>Requirements:</strong> {{ job.requirements }}</p>
 
           <!-- Delete button -->
-          <form action="{{ url_for('employer.delete_informal_job', job_id=job.id) }}" method="POST" class="delete-form">
+          <form action="{{ url_for('employer.view_jobs', job_id=job.id) }}" method="POST" class="delete-form">
             <button type="submit" class="delete-btn">🗑️ Delete</button>
           </form>
         </div>
