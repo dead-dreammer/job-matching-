@@ -4,21 +4,27 @@
 
 {% block content %}
 <a href="javascript:history.back()" class="back-button">← Back</a>
-<div class="jobs-container" style="max-width: 1000px; margin: 100px auto 50px; padding: 0 20px;">
-  <h2 style="text-align: center; margin-bottom: 30px;">Jobs You Created</h2>
+<div class="jobs-container">
+  <h2 class="page-title">Jobs You Created</h2>
 
   {% if formal_jobs or informal_jobs %}
     <!-- Formal Jobs -->
     {% if formal_jobs %}
-      <h3>Formal Jobs</h3>
+      <h3 class="section-title">Formal Jobs</h3>
       <div class="job-list">
         {% for job in formal_jobs %}
         <div class="job-card">
-          <h4>{{ job.title }} ({{ job.job_field }})</h4>
+          <h4 class="job-title">💼 {{ job.title }}</h4>
+          <p><strong>Field:</strong> {{ job.job_field }}</p>
           <p><strong>Location:</strong> {{ job.location }}</p>
-          <p><strong>Salary:</strong> {{ job.salary }}</p>
+          <p><strong>Salary:</strong> R{{ job.salary }}</p>
           <p><strong>Description:</strong> {{ job.description }}</p>
           <p><strong>Requirements:</strong> {{ job.requirements }}</p>
+
+          <!-- Delete button -->
+          <form action="{{ url_for('employer.delete_formal_job', job_id=job.id) }}" method="POST" class="delete-form">
+            <button type="submit" class="delete-btn">🗑️ Delete</button>
+          </form>
         </div>
         {% endfor %}
       </div>
@@ -26,40 +32,127 @@
 
     <!-- Informal Jobs -->
     {% if informal_jobs %}
-      <h3 style="margin-top: 40px;">Informal Jobs</h3>
+      <h3 class="section-title">Informal Jobs</h3>
       <div class="job-list">
         {% for job in informal_jobs %}
         <div class="job-card">
-          <h4>{{ job.title }} ({{ job.field }})</h4>
+          <h4 class="job-title">🛠️ {{ job.title }}</h4>
+          <p><strong>Field:</strong> {{ job.field }}</p>
           <p><strong>Location:</strong> {{ job.location }}</p>
-          <p><strong>Pay Rate:</strong> {{ job.pay_rate }}</p>
+          <p><strong>Pay Rate:</strong> R{{ job.pay_rate }}</p>
           <p><strong>Description:</strong> {{ job.description }}</p>
           <p><strong>Requirements:</strong> {{ job.requirements }}</p>
+
+          <!-- Delete button -->
+          <form action="{{ url_for('employer.delete_informal_job', job_id=job.id) }}" method="POST" class="delete-form">
+            <button type="submit" class="delete-btn">🗑️ Delete</button>
+          </form>
         </div>
         {% endfor %}
       </div>
     {% endif %}
 
   {% else %}
-    <p style="text-align: center;">You haven't created any jobs yet.</p>
+    <p class="empty-message">You haven't created any jobs yet.</p>
   {% endif %}
 </div>
 
 <style>
+.jobs-container {
+  max-width: 1100px;
+  margin: 100px auto 50px;
+  padding: 0 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.section-title {
+  margin: 40px 0 20px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #00ffb3;
+}
+
+.job-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
 .job-card {
-    background: rgba(0, 255, 179, 0.1);
-    border: 1px solid rgba(0, 255, 179, 0.4);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: transform 0.2s ease;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
 .job-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 255, 179, 0.3);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.12);
 }
-.job-list h3 {
-    margin-bottom: 15px;
+
+.job-title {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.job-card p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #e5e5e5;
+}
+
+.job-card p strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.empty-message {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1.1rem;
+  color: #ddd;
+}
+
+/* Delete button */
+.delete-form {
+  margin-top: 15px;
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #ff4b5c, #c0392b);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(192, 57, 43, 0.4);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #ff4b5c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(192, 57, 43, 0.6);
 }
 </style>
 {% endblock %}

@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}Sign In - JobMatcher{% endblock %}
-
+{% block extra_styles %}
+<style>
+  .container {
+    max-width: 500px;
+    margin-top: 50px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+</style>
+{% endblock %}
 {% block content %}
 <main class="main">
 <div class="container">

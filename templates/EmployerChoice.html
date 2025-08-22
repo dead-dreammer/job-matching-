@@ -10,7 +10,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            padding: 80px 20px 20px;
+  
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -41,7 +41,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+  
             gap: 2rem;
             flex-wrap: wrap;
         }
@@ -58,7 +58,9 @@
 
         .option-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 30px rgb(0, 255, 179),
+
+        inset 0 0 10px rgb(0, 255, 179);
         }
 
         .option-card h2 {
@@ -118,9 +120,7 @@
 <body>
    {% extends "base.html" %}
     {% block content %}
-    {% block extra_nav %}
-        <a href="/employer/pay" class="nav-link">pay</a>
-    {% endblock %}
+
 
     <a href="/choice" class="back-button">← Back</a>
     
@@ -140,6 +140,12 @@
             <h2>Informal Jobs</h2>
             <p>Post part-time work, gigs, temporary positions, and flexible opportunities.</p>
             <a href="/employer/informal/post" class="button">Post Informal Job</a>
+        </div>
+         <div class="option-card">
+            <i class="fas fa-tasks icon"></i>
+            <h2>View Jobs Created</h2>
+            <p>Keep track of jobs created</p>
+            <a href="/employer/view_jobs" class="button">View Jobs</a>
         </div>
     </div>
     {% endblock %}

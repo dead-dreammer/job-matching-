@@ -24,21 +24,6 @@
       color: #fff;
     }
 
-    .back-button {
-      display: inline-block;
-      text-decoration: none;
-      color: #fff;
-      font-size: 0.95rem;
-      background: rgba(0,0,0,0.3);
-      padding: 8px 14px;
-      border-radius: 10px;
-      transition: background 0.3s ease;
-      margin-bottom: 1.5rem; /* space between button and container */
-    }
-
-    .back-button:hover {
-      background: rgba(0,0,0,0.5);
-    }
 
     .receipt {
       background: rgba(255, 255, 255, 0.15);
@@ -50,6 +35,7 @@
       animation: fadeIn 0.5s ease-out;
       color: #fff;
       position: relative;
+      margin-top: 90px;
     }
 
     @keyframes fadeIn {
@@ -106,7 +92,7 @@
 <body>
   {% block content %}
     <!-- Back button at top of page -->
-    <a href="javascript:history.back()" class="back-button">← Back</a>
+    <a href="/employer/choice" class="back-button">← Back</a>
 
     <div class="receipt">
       <h2>Receipt</h2>

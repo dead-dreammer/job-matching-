@@ -51,11 +51,23 @@ def sign_up():
             db.session.commit()
 
     # Store session
+    # Store session
     session['user_id'] = new_user.id
     session['username'] = new_user.name
     session['email'] = new_user.email
+    session['number'] = new_user.number   # add this
+
+    # calculate and store age
+    if new_user.dob:
+        today = datetime.today().date()
+        age = today.year - new_user.dob.year - ((today.month, today.day) < (new_user.dob.month, new_user.dob.day))
+        session['age'] = age
+    else:
+        session['age'] = None
+
     session['company_id'] = company_obj.id if company_obj else None
     session['company_name'] = company_obj.name if company_obj else None
+
 
     return jsonify({'message': 'Account Created!', 'username': new_user.name}), 201
 

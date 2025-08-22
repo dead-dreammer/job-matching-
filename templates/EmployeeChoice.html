@@ -46,11 +46,16 @@
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+           
         }
 
         .option-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+             box-shadow:
+        0 4px 30px rgb(0, 255, 179),
+
+        inset 0 0 10px rgb(0, 255, 179);
         }
 
         .option-card h2 {
@@ -107,7 +112,7 @@
     {% block content %}
 
     <div class="header">
-       <a href="javascript:history.back()" class="back-button">← Back</a>
+       <a href="/choice" class="back-button">← Back</a>
         <h1>Choose Your Job Type</h1>
     </div>
     

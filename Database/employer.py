@@ -178,3 +178,17 @@ def my_jobs():
     informal_jobs = InformalJob.query.filter_by(created_by=user_id).all()
 
     return render_template('view_jobs.html', formal_jobs=formal_jobs, informal_jobs=informal_jobs)
+
+@employer.route('/formal/delete/<int:job_id>', methods=['POST'])
+def delete_formal_job(job_id):
+    job = FormalJob.query.get_or_404(job_id)
+    db.session.delete(job)
+    db.session.commit()
+    return redirect(url_for('employer_formal_display'))
+
+@employer.route('/informal/delete/<int:job_id>', methods=['POST'])
+def delete_informal_job(job_id):
+    job = InformalJob.query.get_or_404(job_id)
+    db.session.delete(job)
+    db.session.commit()
+    return redirect(url_for('employer_informal_display'))

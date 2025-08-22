@@ -12,11 +12,10 @@
   body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 80px 20px 20px; 
+    padding: 80px 20px 20px;
     background: linear-gradient(135deg, #1f2c44, #3e5ba3);
     min-height: 100vh;
     color: #fff;
-     align-items: flex-start; 
   }
 
   .header {
@@ -25,21 +24,7 @@
     margin-bottom: 20px;
   }
 
-  .back-button {
-    position: absolute;
-    padding: 8px 16px;
-    background: #556ee6;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s;
-  }
 
-  .back-button:hover {
-    background: #3747a8;
-  }
 
   h1 {
     text-align: center;
@@ -51,30 +36,43 @@
   .filter-bar {
     background: rgba(255, 255, 255, 0.1);
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 12px;
     margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     align-items: center;
+    justify-content: center;
     backdrop-filter: blur(8px);
   }
-
   .filter-bar label {
     font-weight: bold;
   }
-
-  .filter-bar input {
-    padding: 5px 10px;
-    border-radius: 6px;
+  .filter-bar input,
+  .filter-bar select {
+    padding: 10px 14px;
+    border-radius: 8px;
     border: none;
     outline: none;
-    width: 120px;
+    width: 150px;
+    font-family: 'Poppins', sans-serif;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    transition: background 0.3s, box-shadow 0.3s;
   }
-
+  .filter-bar input:focus,
+  .filter-bar select:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(85, 110, 230, 0.7);
+    color: #222;
+  }
+  .filter-bar option {
+    color: #000;
+  }
   .filter-bar button {
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
     border: none;
     background: #556ee6;
     color: #fff;
@@ -82,78 +80,98 @@
     cursor: pointer;
     transition: background 0.3s;
   }
-
   .filter-bar button:hover {
     background: #3747a8;
   }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 
   .job-card {
-    background: rgba(255,255,255,0.15);
-    padding: 15px;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    min-height: 140px;
+    transition: all 0.3s ease;
+    min-height: 180px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
   }
-
   .job-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 4px 30px rgb(0, 255, 179),
+      inset 0 0 10px rgb(0, 255, 179);
   }
-
   .job-card h3 {
-    margin-top: 0;
-    font-size: 1.1rem;
+    margin: 0 0 12px 0;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: #fff;
+    letter-spacing: 0.6px;
+  }
+  .job-card p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+    color: #e5e5e5;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .job-card p strong {
+    color: #fff;
+    font-weight: 600;
   }
 
   .job-details {
-    display: none;
-    margin-top: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.25);
     font-size: 0.9rem;
+    line-height: 1.6;
+    color: #dcdcdc;
+    display: none;
   }
-
   .job-card.expanded .job-details {
     display: block;
+    animation: fadeInDetails 0.3s ease-in;
   }
 
- 
+  ::placeholder {
+  color: #cfcfcf;   /* light grey */
+  opacity: 1;       /* ensures full color (some browsers reduce opacity) */
+  font-style: italic;
+}
 
+  @keyframes fadeInDetails {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
   @media (max-width: 1200px) {
-    .grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    .grid { grid-template-columns: repeat(3, 1fr); }
   }
-
   @media (max-width: 800px) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .grid { grid-template-columns: repeat(2, 1fr); }
   }
-
   @media (max-width: 500px) {
-    .grid {
-      grid-template-columns: 1fr;
-    }
+    .grid { grid-template-columns: 1fr; }
   }
+  
 </style>
 {% endblock extra_styles %}
-
-
 </head>
 <body>
-
 {% block content %}
 <div class="header">
   <a href="/employee/choice" class="back-button">← Back</a>
@@ -161,8 +179,8 @@
 </div>
 
 <div class="filter-bar">
-  <label for="filterField">Field:</label>
-  <input type="text" id="filterField" placeholder="Any">
+  <label for="filterSearch">Search:</label>
+  <input type="text" id="filterSearch" placeholder="Search jobs...">
 
   <label for="filterSalaryMin">Salary Min:</label>
   <input type="number" id="filterSalaryMin" placeholder="0">
@@ -171,131 +189,95 @@
   <input type="number" id="filterSalaryMax" placeholder="10000">
 
   <label for="filterLocation">Location:</label>
-  <input type="text" id="filterLocation" placeholder="Any">
+  <select id="filterLocation">
+    <option value="">Any</option>
+    <option value="Eastern Cape">Eastern Cape</option>
+    <option value="Free State">Free State</option>
+    <option value="Gauteng">Gauteng</option>
+    <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+    <option value="Limpopo">Limpopo</option>
+    <option value="Mpumalanga">Mpumalanga</option>
+    <option value="Northern Cape">Northern Cape</option>
+    <option value="North West">North West</option>
+    <option value="Western Cape">Western Cape</option>
+    <option value="Remote">Remote</option>
+  </select>
 
   <button id="applyFilter">Apply</button>
   <button id="clearFilter">Clear</button>
 </div>
 
-<div class="grid" id="jobGrid">
-  <!-- Job cards will appear here -->
-</div>
+<div class="grid" id="jobGrid"></div>
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
 <script>
-  const jobGrid = document.getElementById('jobGrid');
+const jobGrid = document.getElementById('jobGrid');
 
-  const filterField = document.getElementById('filterField');
-  const filterSalaryMin = document.getElementById('filterSalaryMin');
-  const filterSalaryMax = document.getElementById('filterSalaryMax');
-  const filterLocation = document.getElementById('filterLocation');
+let jobs = [
+  { title: "Part-time Tutor", field: "Education", salary: 25, location: "Remote", description: "Math and Science tutoring.", requirements: "Strong academic background." },
+  { title: "Dog Walker", field: "Pet Care", salary: 20, location: "Gauteng", description: "Walk dogs, flexible schedule.", requirements: "Love for animals." },
+  { title: "Graphic Design Freelancer", field: "Design", salary: 35, location: "Remote", description: "Social media graphics.", requirements: "Adobe Creative Suite." },
+  { title: "Delivery Driver", field: "Transportation", salary: 18, location: "Western Cape", description: "Food/package delivery.", requirements: "Valid license." },
+  { title: "Virtual Assistant", field: "Administrative", salary: 22, location: "KwaZulu-Natal", description: "Help with admin tasks.", requirements: "Organized." }
+];
 
-  // Example informal jobs
-  let jobs = [
-    {
-      title: "Part-time Tutor",
-      field: "Education",
-      salary: 25, // per hour
-      location: "Remote",
-      description: "Math and Science tutoring for high school students.",
-      requirements: "Strong academic background, patient teaching style."
-    },
-    {
-      title: "Dog Walker",
-      field: "Pet Care",
-      salary: 20, // per hour
-      location: "Brooklyn",
-      description: "Walk dogs in local neighborhood, flexible schedule.",
-      requirements: "Love for animals, reliable, physically fit."
-    },
-    {
-      title: "Graphic Design Freelancer",
-      field: "Design",
-      salary: 35, // per hour
-      location: "Remote",
-      description: "Create social media graphics and promotional materials.",
-      requirements: "Portfolio of work, knowledge of Adobe Creative Suite."
-    },
-    {
-      title: "Delivery Driver",
-      field: "Transportation",
-      salary: 18, // per hour
-      location: "Chicago",
-      description: "Food and package delivery, choose your own hours.",
-      requirements: "Valid driver's license, clean driving record."
-    },
-    {
-      title: "Virtual Assistant",
-      field: "Administrative",
-      salary: 22, // per hour
-      location: "Remote",
-      description: "Help with emails, scheduling, and basic tasks.",
-      requirements: "Organized, good communication skills."
-    }
-  ];
+function renderJobs(filters = {}) {
+  jobGrid.innerHTML = '';
+  let filteredJobs = jobs.filter(job => {
+    if (filters.search && !(
+      job.title.toLowerCase().includes(filters.search.toLowerCase()) ||
+      job.field.toLowerCase().includes(filters.search.toLowerCase()) ||
+      job.description.toLowerCase().includes(filters.search.toLowerCase())
+    )) return false;
+    if (filters.salaryMin && job.salary < filters.salaryMin) return false;
+    if (filters.salaryMax && job.salary > filters.salaryMax) return false;
+    if (filters.location && filters.location !== job.location) return false;
+    return true;
+  });
 
-  function renderJobs(filters = {}) {
-    jobGrid.innerHTML = '';
-
-    let filteredJobs = jobs.filter(job => {
-      if (filters.field && filters.field.trim() !== '' &&
-          !job.field.toLowerCase().includes(filters.field.trim().toLowerCase())) return false;
-      if (filters.salaryMin != null && job.salary < filters.salaryMin) return false;
-      if (filters.salaryMax != null && job.salary > filters.salaryMax) return false;
-      if (filters.location && filters.location.trim() !== '' &&
-          !job.location.toLowerCase().includes(filters.location.trim().toLowerCase())) return false;
-
-      return true;
-    });
-
-    if (filteredJobs.length === 0) {
-      jobGrid.innerHTML = "<p style='color:#fff; grid-column: 1 / -1; text-align:center;'>No jobs found.</p>";
-      return;
-    }
-
-    filteredJobs.forEach(job => {
-      const card = document.createElement('div');
-      card.className = 'job-card';
-      card.innerHTML = `
-        <h3>${job.title}</h3>
-        <p><strong>Field:</strong> ${job.field}</p>
-        <p><strong>Pay Rate:</strong> $${job.salary}/hr</p>
-        <p><strong>Location:</strong> ${job.location}</p>
-        <div class="job-details">
-          <p><strong>Description:</strong> ${job.description}</p>
-          <p><strong>Requirements:</strong> ${job.requirements}</p>
-        </div>
-      `;
-      card.addEventListener('click', () => {
-        card.classList.toggle('expanded');
-      });
-      jobGrid.appendChild(card);
-    });
+  if (filteredJobs.length === 0) {
+    jobGrid.innerHTML = "<p style='color:#fff; grid-column: 1 / -1; text-align:center;'>No jobs found.</p>";
+    return;
   }
 
-  document.getElementById('applyFilter').addEventListener('click', () => {
-    renderJobs({
-      field: filterField.value || null,
-      salaryMin: parseInt(filterSalaryMin.value) || null,
-      salaryMax: parseInt(filterSalaryMax.value) || null,
-      location: filterLocation.value || null
-    });
+  filteredJobs.forEach(job => {
+    const card = document.createElement('div');
+    card.className = 'job-card';
+    card.innerHTML = `
+      <h3>🛠️ ${job.title}</h3>
+      <p><span>📂</span><strong>Field:</strong> ${job.field}</p>
+      <p><span>💰</span><strong>Pay Rate:</strong> R${job.salary}/hr</p>
+      <p><span>📍</span><strong>Location:</strong> ${job.location}</p>
+      <div class="job-details">
+        <p><strong>Description:</strong> ${job.description}</p>
+        <p><strong>Requirements:</strong> ${job.requirements}</p>
+      </div>`;
+    card.addEventListener('click', () => card.classList.toggle('expanded'));
+    jobGrid.appendChild(card);
   });
+}
 
-  document.getElementById('clearFilter').addEventListener('click', () => {
-    filterField.value = '';
-    filterSalaryMin.value = '';
-    filterSalaryMax.value = '';
-    filterLocation.value = '';
-    renderJobs();
+document.getElementById('applyFilter').addEventListener('click', () => {
+  renderJobs({
+    search: document.getElementById('filterSearch').value || null,
+    salaryMin: parseInt(document.getElementById('filterSalaryMin').value) || null,
+    salaryMax: parseInt(document.getElementById('filterSalaryMax').value) || null,
+    location: document.getElementById('filterLocation').value || null
   });
+});
 
+document.getElementById('clearFilter').addEventListener('click', () => {
+  document.getElementById('filterSearch').value = '';
+  document.getElementById('filterSalaryMin').value = '';
+  document.getElementById('filterSalaryMax').value = '';
+  document.getElementById('filterLocation').value = '';
   renderJobs();
+});
+
+renderJobs();
 </script>
-
 {% endblock %}
-
 </body>
 </html>

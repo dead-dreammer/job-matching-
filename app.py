@@ -1,8 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify, send_file
 from Database.auth import auth
 from Database.__init__ import db, create_database
 from Database.employer import employer
 from Database.employee import employee
+import tempfile
+from weasyprint import HTML
+from flask import session
+
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dalziel'
@@ -94,10 +99,44 @@ def employee_informal_browse():
 
 @app.route('/employee/cv-gen', methods=['GET', 'POST'])
 def employee_cv_gen():
-    return render_template('form.html')
+    if request.method == 'POST':
+        from weasyprint import HTML
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        address = request.form.get('address')
+        skills = request.form.get('skills').split(",") if request.form.get('skills') else []
+        education = request.form.get('education')
+        experience = request.form.get('experience')
+        projects = request.form.get('projects')
+        additional = request.form.get('additional')
+
+        rendered_html = render_template(
+            'cv_template.html',
+            name=name,
+            email=email,
+            phone=phone,
+            address=address,
+            skills=[s.strip() for s in skills],  # clean up whitespace
+            education=education,
+            experience=experience,
+            projects=projects,
+            additional=additional
+        )
+
+        #  generate pdf here inside POST
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as pdf_file:
+            HTML(string=rendered_html).write_pdf(pdf_file.name)
+            return send_file(pdf_file.name, as_attachment=True, download_name=f"{name}_CV.pdf")
+
+    # GET: just show the form
+    return render_template('cv_form.html')
+
+
+
 
 # Server will only run if this file is executed directly
 # Prevents the server from running if the file is imported into another module
 if __name__ == '__main__':
     # Runs the Flask development server with debugging enabled
-    app.run(debug = True)
+    app.run(host="0.0.0.0", port=5000)

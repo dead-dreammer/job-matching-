@@ -171,7 +171,7 @@
 {% block title %}Formal Job Posting{% endblock %}
 
 {% block content %}
- <a href="javascript:history.back()" class="back-button">← Back</a>
+ <a href="/employer/choice" class="back-button">← Back</a>
 <div class="form-container" role="main" aria-labelledby="formTitle">
   <h2 id="formTitle">Post a Formal Job</h2>
   <form id="formalJobForm" novalidate>
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (result.success) {
        
         form.reset();
-        window.location.href = '/pay';
+        window.location.href = '/employer/pay';
       } else {
         alert('Error: ' + (result.error || 'Unknown error'));
       }
