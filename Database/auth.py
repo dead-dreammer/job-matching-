@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, session
-from Database.models import User, Company
+from Database.models import User
 from Database.__init__ import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
@@ -17,7 +17,7 @@ def sign_up():
     number = data.get('number')
     password = data.get('password')
     gender = data.get('gender')
-    company_name = data.get('companyName')
+
     dob_str = data.get('dob')
 
     # Parse date of birth
@@ -41,14 +41,6 @@ def sign_up():
     db.session.add(new_user)
     db.session.commit()  # commit so new_user.id is available
 
-    # Handle company
-    company_obj = None
-    if company_name:
-        company_obj = Company.query.filter_by(name=company_name).first()
-        if not company_obj:
-            company_obj = Company(name=company_name)
-            db.session.add(company_obj)
-            db.session.commit()
 
     # Store session
     # Store session
@@ -64,10 +56,6 @@ def sign_up():
         session['age'] = age
     else:
         session['age'] = None
-
-    session['company_id'] = company_obj.id if company_obj else None
-    session['company_name'] = company_obj.name if company_obj else None
-
 
     return jsonify({'message': 'Account Created!', 'username': new_user.name}), 201
 
@@ -85,12 +73,6 @@ def login():
     if not user or not check_password_hash(user.password, password):
         return jsonify({'message': 'Invalid credentials'}), 401
 
-    # Try to find the company linked to this user
-    # Assumes a user can have a company via formal jobs
-    company = None
-    if hasattr(user, 'formal_jobs') and user.formal_jobs:
-        company = user.formal_jobs[0].company
-
     session['user_id'] = user.id
     session['username'] = user.name
     session['email'] = user.email
@@ -104,8 +86,6 @@ def login():
     else:
         session['age'] = None
 
-    session['company_id'] = company.id if company else None
-    session['company_name'] = company.name if company else None
 
     return jsonify({'message': 'Login successful', 'username': user.name}), 200
 

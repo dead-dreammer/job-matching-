@@ -381,23 +381,14 @@
     {% endif %}
   </div>
 
-  <div class="navbar-center">
-    <a href="/" class="navbar-brand">
-      <img src="{{ url_for('static', filename='images/Jinger_logo.png') }}" class="logo-img" >
-   
-    </a>
-  </div>
 
   <div class="navbar-right">
     {% if session.get('username') %}
       <a href="/" class="nav-link">Home</a>
-    
-      <a href="/about" class="nav-link">About Us</a>
-      <a href="/contact" class="nav-link">Contact</a>
+ 
       <a href="/#" id="logoutBtn" class="nav-link primary">Logout</a>
     {% else %}
-      <a href="/about" class="nav-link">About Us</a>
-      <a href="/contact" class="nav-link">Contact</a>
+
       <a href="/login" class="nav-link">Sign In</a>
     {% endif %}
   </div>
@@ -442,21 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 {% endblock %}
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-left">
-      <h3>Jinder</h3>
-    </div>
 
-    <div class="footer-center">
-      <p>&copy; {{ current_year }} Jinder - JobMatcher. All rights reserved.</p>
-    </div>
-
-    <div class="footer-right">
-      <h3>Connecting talent with opportunities.</h3>
-    </div>
-  </div>
-</footer>
 
 
 </body>

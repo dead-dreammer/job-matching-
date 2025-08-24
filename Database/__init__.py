@@ -36,14 +36,12 @@ def create_app():
 
     # Import blueprints and models within the function scope to avoid circular imports
     from .auth import auth
-    from .employer import employer
-    from .employee import employee  
+
     
 
     # Register blueprints
     app.register_blueprint(auth, url_prefix='/auth')
-    app.register_blueprint(employer, url_prefix='/employer')
-    app.register_blueprint(employee, url_prefix='/employee')
+
 
 
     from .models import User
